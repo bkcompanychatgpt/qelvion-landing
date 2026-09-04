@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QELVION Admin — Content Manager</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111F'/%3E%3Cpath d='M32 10 54 25v14L32 54 10 39V25Z' fill='none' stroke='%2338D9F0' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050A14;--card:#0B1526;--line:#23354f;--txt:#EAF3FF;--mut:#9FB2CF;--acc:#4DE1FF;--acc2:#23D6A4;--err:#ff7a90;--ok:#6be6b5;--sora:'Sora',sans-serif;--body:'Manrope',sans-serif;--mono:'JetBrains Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(900px 500px at 85% -10%,rgba(77,225,255,.08),transparent 60%),var(--bg);color:var(--txt);font-family:var(--body);font-size:15px;line-height:1.6;min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:26px}
+header{display:flex;align-items:center;gap:12px;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand b{font-family:var(--sora);font-size:19px}
+.brand small{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.4em;color:var(--acc2)}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px}
+h2{font-family:var(--sora);font-size:16px;margin-bottom:4px}
+h2 .badge{font-family:var(--mono);font-size:10px;color:var(--acc2);border:1px solid rgba(35,214,164,.4);border-radius:6px;padding:2px 7px;vertical-align:2px;margin-left:8px}
+.sub{color:var(--mut);font-size:13px;margin-bottom:16px}
+label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);margin:12px 0 6px;letter-spacing:.02em}
+input[type=text],input[type=password],input[type=search],textarea,select{width:100%;background:#060D18;border:1px solid var(--line);border-radius:10px;color:var(--txt);font-family:var(--body);font-size:14px;padding:10px 12px;outline:none}
+textarea{min-height:74px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--acc)}
+input[type=file]{color:var(--mut);font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:11px;padding:11px 20px;font-family:var(--sora);font-weight:700;font-size:14px;cursor:pointer}
+.btn-p{background:linear-gradient(100deg,#4DE1FF,#23D6A4);color:#02101C}
+.btn-g{background:rgba(255,255,255,.05);border:1px solid var(--line);color:var(--txt)}
+.btn:disabled{opacity:.5;cursor:wait}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.note{font-size:12.5px;color:var(--mut);margin-top:8px}
+.ok{color:var(--ok)} .err{color:var(--err)}
+.hide{display:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--mut);border-radius:10px;padding:9px 16px;font-weight:700;font-size:13.5px;cursor:pointer}
+.tab.on{background:linear-gradient(100deg,rgba(77,225,255,.18),rgba(35,214,164,.14));border-color:rgba(77,225,255,.5);color:var(--txt)}
+.panel{display:none}.panel.on{display:block}
+#login{max-width:520px;margin:8vh auto}
+.prod{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:rgba(255,255,255,.02)}
+.prod img{width:44px;height:44px;object-fit:cover;border-radius:8px;border:1px solid var(--line);flex:none}
+.prod .info{flex:1;min-width:0}
+.prod .info b{font-size:13.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prod .info span{font-family:var(--mono);font-size:10.5px;color:var(--dim,#7d93b5)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0E2A24;border:1px solid var(--acc2);color:#CFF7E6;padding:11px 20px;border-radius:12px;font-size:13.5px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:50}
+.toast.show{opacity:1}
+@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <svg width="40" height="40" viewBox="0 0 200 200"><path d="M100 22 164.6 61 164.6 139 100 178 35.4 139 35.4 61Z" fill="none" stroke="#38D9F0" stroke-width="14"/><path d="M100 54C134 76 134 124 100 146" fill="none" stroke="#1FD6A4" stroke-width="14" stroke-linecap="round"/></svg>
+    <div><b>QELVION Admin</b><small>BIOTECH · CONTENT</small></div>
+  </div>
+  <div class="row">
+    <span class="note" id="whoami" style="margin:0"></span>
+    <button class="btn btn-g hide" id="btnLogout">Log out</button>
+  </div>
+</header>
+
+<!-- login -->
+<div id="login" class="card">
+  <h2>Sign in to the content manager</h2>
+  <p class="sub">You sign in with your GitHub token. The token is stored only in <b>this browser</b> and is used to save changes to your site repository.</p>
+  <label>GitHub Personal Access Token (scopes: repo)</label>
+  <input type="password" id="ghToken" placeholder="ghp_…" autocomplete="off">
+  <label>Repository</label>
+  <input type="text" id="repoName" value="bkcompanychatgpt/qelvion-landing">
+  <div class="row" style="margin-top:16px">
+    <button class="btn btn-p" id="btnLogin">Sign in &amp; load content</button>
+    <button class="btn btn-g" id="btnCreateToken" type="button">How to create a token?</button>
+  </div>
+  <p class="note err hide" id="loginErr"></p>
+</div>
+
+<!-- dashboard -->
+<div id="dash" class="hide">
+  <div class="tabs">
+    <button class="tab on" data-panel="tabContact">① Contact / WhatsApp</button>
+    <button class="tab" data-panel="tabText">② Homepage texts</button>
+    <button class="tab" data-panel="tabImages">③ Product images</button>
+    <button class="tab" data-panel="tabGuide">Help</button>
+  </div>
+
+  <!-- contact -->
+  <div class="panel on" id="tabContact">
+    <div class="card">
+      <h2>Contact &amp; WhatsApp <span class="badge">assets/site-settings.js</span></h2>
+      <p class="sub">These power the email links across the site and the floating WhatsApp button (bottom-right).</p>
+      <div class="grid2">
+        <div><label>Email shown on the site</label><input type="text" id="cEmail"></div>
+        <div><label>WhatsApp number (intl format, e.g. +8613800138000)</label><input type="text" id="cWa"></div>
+      </div>
+      <label>Auto message when customers tap the WhatsApp button</label>
+      <textarea id="cWaMsg"></textarea>
+      <div class="row" style="margin-top:16px"><button class="btn btn-p" id="btnSaveContact">Save contact info</button><span class="note">保存后 1-2 分钟网站自动更新</span></div>
+    </div>
+  </div>
+
+  <!-- texts -->
+  <div class="panel" id="tabText">
+    <div class="card">
+      <h2>Homepage texts <span class="badge">assets/content.json</span></h2>
+      <p class="sub">Edit titles, paragraphs and button labels of the homepage (index.html). Fields marked * allow simple HTML like &lt;b&gt; or &lt;br&gt;.</p>
+      <div id="textFields"></div>
+      <div class="row" style="margin-top:18px"><button class="btn btn-p" id="btnSaveText">Save homepage texts</button><span class="note">保存后 1-2 分钟网站自动更新</span></div>
+    </div>
+  </div>
+
+  <!-- images -->
+  <div class="panel" id="tabImages">
+    <div class="card">
+      <h2>Product images <span class="badge">assets/products/</span></h2>
+      <p class="sub">Replace a product bottle photo. Upload a PNG (square, e.g. 1024×1024) — it will overwrite the existing file in the repository.</p>
+      <input type="search" id="imgSearch" placeholder="Filter products…">
+      <div id="imgList" style="margin-top:14px"></div>
+    </div>
+  </div>
+
+  <!-- guide -->
+  <div class="panel" id="tabGuide">
+    <div class="card">
+      <h2>Quick guide</h2>
+      <ul style="color:var(--mut);padding-left:18px;line-height:2">
+        <li>Every “Save” commits directly to your GitHub repository on branch <b>main</b>.</li>
+        <li>Render auto-deploys after each commit — the live site updates in about 1–2 minutes.</li>
+        <li>Your token never leaves this browser. To revoke it, delete it at <b>github.com → Settings → Developer settings → Personal access tokens</b>.</li>
+        <li>Want to edit the catalog page texts or FAQ too? Ask me to add those fields to this panel.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+const LS_TOKEN="qadmin_gh";
+const OWNER_REPO="bkcompanychatgpt/qelvion-landing";
+const GHPATH="https://api.github.com";
+let token="";
+let settingsData=null; // site-settings.js raw
+let contentData=null;  // content.json object
+
+const $=id=>document.getElementById(id);
+const el=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;};
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const b64e=s=>btoa(unescape(encodeURIComponent(s)));
+const b64d=s=>decodeURIComponent(escape(atob(s)));
+function toast(msg,err){const t=$("toast");t.textContent=msg;t.style.background=err?"#3a1220":"#0E2A24";t.style.borderColor=err?"#ff7a90":"#23D6A4";t.classList.add("show");setTimeout(()=>t.classList.remove("show"),3600);}
+
+async function gh(method,path,body){
+  const res=await fetch(GHPATH+path,{method,headers:{Authorization:"Bearer "+token,Accept:"application/vnd.github+json","Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
+  if(res.status===401||res.status===403){ throw new Error("Auth failed — token invalid or expired ("+res.status+")"); }
+  const txt=await res.text();
+  let j=null; try{j=JSON.parse(txt);}catch(e){}
+  if(!res.ok){ throw new Error((j&&(j.message||j.errors&&j.errors[0].message))||("HTTP "+res.status)); }
+  return j;
+}
+async function readRepoFile(path){
+  const j=await gh("GET","/repos/"+OWNER_REPO+"/contents/"+path+"?ref=main");
+  return {sha:j.sha, content:b64d(j.content)};
+}
+async function writeRepoFile(path,content,extraMsg){
+  const cur=await gh("GET","/repos/"+OWNER_REPO+"/contents/"+path+"?ref=main");
+  const msg=extraMsg?("Admin: "+extraMsg):("Admin update "+path);
+  await gh("PUT","/repos/"+OWNER_REPO+"/contents/"+path,{message:msg,content:b64e(content),sha:cur.sha,branch:"main"});
+}
+
+/* ---------- login ---------- */
+$("btnCreateToken").onclick=()=>{ window.open("https://github.com/settings/tokens/new","_blank"); toast("Open: note any name → tick only “repo” → Generate → copy ghp_…",true); };
+$("btnLogin").onclick=async()=>{
+  token=$("ghToken").value.trim();
+  const repo=$("repoName").value.trim();
+  if(!token||!repo){ toast("Please enter token and repository",true); return; }
+  try{
+    const u=await gh("GET","/user");
+    localStorage.setItem(LS_TOKEN,token);
+    localStorage.setItem("qadmin_repo",repo);
+    $("loginErr").classList.add("hide");
+    $("whoami").textContent="Signed in as "+u.login;
+    showDash();
+  }catch(e){ $("loginErr").textContent=e.message; $("loginErr").classList.remove("hide"); }
+};
+$("btnLogout").onclick=()=>{ localStorage.removeItem(LS_TOKEN); location.reload(); };
+
+function showDash(){
+  $("login").classList.add("hide");
+  $("dash").classList.remove("hide");
+  $("btnLogout").classList.remove("hide");
+  loadContact();
+  loadTexts();
+  buildImages();
+}
+function loadFromLocal(){
+  token=localStorage.getItem(LS_TOKEN)||"";
+  if(token){ showDash(); }
+}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===t));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.id===t.dataset.panel));
+});
+
+/* ---------- contact ---------- */
+async function loadContact(){
+  try{
+    const f=await readRepoFile("assets/site-settings.js");
+    settingsData=f;
+    const m=f.content.match(/email\s*:\s*"([^"]*)"/);
+    const w=f.content.match(/whatsapp\s*:\s*"([^"]*)"/);
+    const wm=f.content.match(/whatsapp_msg\s*:\s*"([^"]*)"/);
+    $("cEmail").value=m?m[1]:"";
+    $("cWa").value=w?w[1]:"";
+    $("cWaMsg").value=wm?wm[1]:"";
+  }catch(e){ toast("Cannot load settings: "+e.message,true); }
+}
+function buildSettingsJs(email,wa,msg){
+  return '/* ============================================================\n'+
+  '   QELVION Biotech · site settings (managed via /admin.html)\n'+
+  '   Edit this file to change contact info shown across the site.\n'+
+  '   ============================================================ */\n'+
+  'window.QVSITE = {\n'+
+  '  email: "'+email.replace(/"/g,'\\"')+'",\n'+
+  '  whatsapp: "'+wa.replace(/"/g,'\\"')+'",\n'+
+  '  whatsapp_msg: "'+msg.replace(/"/g,'\\"')+'"\n'+
+  '};\n';
+}
+$("btnSaveContact").onclick=async()=>{
+  const btn=$("btnSaveContact"); btn.disabled=true;
+  try{
+    const content=buildSettingsJs($("cEmail").value.trim(),$("cWa").value.trim(),$("cWaMsg").value.trim());
+    await writeRepoFile("assets/site-settings.js",content,"update contact / whatsapp");
+    toast("Contact saved — live site updates in 1-2 min ✔");
+  }catch(e){ toast("Save failed: "+e.message,true); }
+  btn.disabled=false;
+};
+
+/* ---------- homepage texts ---------- */
+const TEXT_ORDER=[
+ ["heroPre","Hero — first title line (before the coloured part)"],
+ ["heroAccent","Hero — coloured title part (gradient text)"],
+ ["heroSub","Hero — subtitle paragraph *"],
+ ["ctaPrimary","Hero — main button label"],
+ ["ctaSecondary","Hero — second button label"],
+ ["chip1","Hero — badge 1 (HTML allowed)"],
+ ["chip2","Hero — badge 2 (HTML allowed)"],
+ ["chip3","Hero — badge 3 (HTML allowed)"],
+ ["chip4","Hero — badge 4 (HTML allowed)"],
+ ["prodTitle","Products section — heading *"],
+ ["prodLead","Products section — intro paragraph *"],
+ ["prod1t","Product card 1 — title"],["prod1d","Product card 1 — text"],
+ ["prod2t","Product card 2 — title"],["prod2d","Product card 2 — text"],
+ ["prod3t","Product card 3 — title"],["prod3d","Product card 3 — text"],
+ ["prod4t","Product card 4 — title"],["prod4d","Product card 4 — text"],
+ ["prod5t","Product card 5 — title"],["prod5d","Product card 5 — text"],
+ ["prod6t","Product card 6 — title"],["prod6d","Product card 6 — text"],
+ ["contactTitle","Contact section — heading *"],
+ ["contactLead","Contact section — intro text"]
+];
+async function loadTexts(){
+  try{
+    const f=await readRepoFile("assets/content.json");
+    contentData=JSON.parse(f.content);
+  }catch(e){ contentData=null; }
+  const host=document.getElementById("textFields"); host.innerHTML="";
+  TEXT_ORDER.forEach(([key,label])=>{
+    const isArea=(key==="heroSub"||key==="prodLead"||/d$/.test(key)&&key.length===4||key==="contactLead");
+    const wrap=el("div");
+    wrap.appendChild(el("label",null,esc(label)));
+    const val=(contentData&&contentData[key]!=null)?contentData[key]:"";
+    if(isArea){
+      const ta=el("textarea"); ta.id="tf_"+key; ta.value=val;
+      if(key==="heroSub") ta.style.minHeight="110px";
+      wrap.appendChild(ta);
+    } else {
+      const inp=el("input"); inp.type="text"; inp.id="tf_"+key; inp.value=val;
+      wrap.appendChild(inp);
+    }
+    host.appendChild(wrap);
+  });
+}
+$("btnSaveText").onclick=async()=>{
+  const btn=$("btnSaveText"); btn.disabled=true;
+  try{
+    const out={};
+    TEXT_ORDER.forEach(([key])=>{ const v=$("tf_"+key); if(v) out[key]=v.value; });
+    let prev={}; if(contentData) prev=contentData; else { try{ prev=JSON.parse((await readRepoFile("assets/content.json")).content); }catch(e){} }
+    const merged=Object.assign({},prev,out);
+    await writeRepoFile("assets/content.json",JSON.stringify(merged,null,2)+"\n","update homepage texts");
+    toast("Homepage texts saved — live site updates in 1-2 min ✔");
+  }catch(e){ toast("Save failed: "+e.message,true); }
+  btn.disabled=false;
+};
+
+/* ---------- images ---------- */
+const PRODUCT_IMAGES=[
+"vial-aod-9604.png","vial-hgh-frag-176-191.png","vial-mots-c.png","vial-aicar.png","vial-5-amino-1mq.png",
+"vial-bpc-157.png","vial-tb-500.png","vial-bpc157-tb500.png","vial-thymosin-alpha-1.png","vial-ara-290.png",
+"vial-ipamorelin.png","vial-ghrp-2.png","vial-ghrp-6.png","vial-hexarelin.png","vial-cjc-1295-nodac.png",
+"vial-cjc-1295-dac.png","vial-cjc-1295-ipamorelin.png","vial-mgf.png","vial-peg-mgf.png","vial-igf-1-lr3.png",
+"vial-ghk-cu.png","vial-ahk-cu.png","vial-pal-kttks.png","vial-snap-8.png","vial-nad-plus.png",
+"vial-glutathione.png","vial-epithalon.png","vial-ss-31.png","vial-foxo4-dri.png","vial-humanin.png",
+"vial-p21.png","vial-pnc-27.png","vial-fst-344.png","vial-semax.png","vial-selank.png",
+"vial-dsip.png","vial-pinealon.png","vial-pe-22-28.png","vial-adamax.png","vial-glow.png","vial-klow.png",
+"vial-custom-synthesis.png","vial-private-label.png"
+];
+function buildImages(){
+  const list=$("imgList"); list.innerHTML="";
+  PRODUCT_IMAGES.forEach(name=>{
+    const row=el("div","prod");
+    const img=document.createElement("img"); img.alt=""; img.src="assets/products/"+name;
+    img.onerror=()=>{img.style.opacity=.25;};
+    const info=el("div","info");
+    info.appendChild(el("b",null,esc(name.replace(/^vial-/,"").replace(/\.png$/,""))));
+    info.appendChild(el("span",null,esc(name)));
+    const up=document.createElement("input"); up.type="file"; up.accept="image/png,image/jpeg,image/webp";
+    const st=el("span","note","");
+    const btn=el("button","btn btn-g","Replace");
+    btn.onclick=async()=>{
+      const file=up.files&&up.files[0]; if(!file){ st.textContent="choose a file first"; return; }
+      if(file.size>6*1024*1024){ st.textContent="max 6 MB"; return; }
+      btn.disabled=true; st.textContent="uploading…";
+      try{
+        const data=await file.arrayBuffer();
+        const b64=bytesToB64(new Uint8Array(data));
+        const cur=await gh("GET","/repos/"+OWNER_REPO+"/contents/assets/products/"+name+"?ref=main");
+        await gh("PUT","/repos/"+OWNER_REPO+"/contents/assets/products/"+name,{message:"Admin: replace image "+name,content:b64,sha:cur.sha,branch:"main"});
+        st.textContent="saved ✔ (1-2 min to go live)"; st.style.color="var(--ok)";
+        img.src="assets/products/"+name+"?v="+Date.now();
+      }catch(e){ st.textContent=e.message; st.style.color="var(--err)"; }
+      btn.disabled=false;
+    };
+    const controls=el("div",null); controls.style.cssText="display:flex;flex-direction:column;gap:6px;align-items:flex-start";
+    controls.appendChild(up); controls.appendChild(btn); controls.appendChild(st);
+    row.appendChild(img); row.appendChild(info); row.appendChild(controls);
+    row.dataset.name=name.toLowerCase();
+    list.appendChild(row);
+  });
+}
+function bytesToB64(bytes){
+  let bin=""; const CH=0x8000;
+  for(let i=0;i<bytes.length;i+=CH){ bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH)); }
+  return btoa(bin);
+}
+$("imgSearch").oninput=()=>{
+  const q=$("imgSearch").value.toLowerCase();
+  document.querySelectorAll("#imgList .prod").forEach(r=>r.style.display=r.dataset.name.includes(q)?"flex":"none");
+};
+
+loadFromLocal();
+</script>
+</body>
+</html>
