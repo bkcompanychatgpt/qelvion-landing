@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QELVION Biotech — Research-Grade Peptide Manufacturing &amp; CDMO Partner</title>
+<meta name="description" content="QELVION Biotech is a research-grade peptide manufacturer and CDMO partner: HPLC-verified purity, batch-level COA, custom &amp; bulk synthesis, lyophilized vials, global cold-chain supply for research institutions and licensed distributors.">
+<meta property="og:title" content="QELVION Biotech — Precision Peptide Manufacturing">
+<meta property="og:description" content="Research-grade peptides, custom synthesis and private-label manufacturing with COA on every batch.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111F'/%3E%3Cpath d='M32 10 54 25v14L32 54 10 39V25Z' fill='none' stroke='%2338D9F0' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 20c10 6 10 18 0 24' fill='none' stroke='%231FD6A4' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='3.4' fill='%23EAFDFF'/%3E%3C/svg%3E">
+<script>
+window.__QTHEME_DEFAULT='dark';
+(function(){
+  var def=(window.__QTHEME_DEFAULT==='light')?'light':'dark', t=null;
+  try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+  if(t!=='light'&&t!=='dark'){try{t=localStorage.getItem('qelvion-theme')||def;}catch(e){t=def;}}
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+<script src="assets/site-settings.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ QELVION Biotech · design system ============ */
+:root{
+  --bg0:#03060C; --bg1:#050A14; --bg2:#081120; --bg3:#0C1628;
+  --card:rgba(255,255,255,.028); --card2:rgba(255,255,255,.045);
+  --line:rgba(147,179,231,.13); --line2:rgba(147,179,231,.24);
+  --txt:#EAF3FF; --mut:#A3B6D4; --dim:#7188AB;
+  --acc:#4DE1FF; --acc2:#23D6A4; --vio:#8A8BFF;
+  --grad:linear-gradient(100deg,#4DE1FF 0%,#2BD9C0 55%,#23D6A4 100%);
+  --grad-soft:linear-gradient(100deg,rgba(77,225,255,.16),rgba(35,214,164,.14));
+  --sora:'Sora','Segoe UI',system-ui,-apple-system,sans-serif;
+  --body:'Manrope','Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono','Cascadia Code',Consolas,monospace;
+  --r-lg:22px; --r-md:16px; --r-sm:12px;
+  --shadow:0 24px 70px -28px rgba(0,0,0,.75);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg0); color:var(--txt); font-family:var(--body);
+  font-size:16.5px; line-height:1.7; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+::selection{background:rgba(77,225,255,.28);color:#fff}
+
+/* ambient backdrop: grid + glows */
+body::before{
+  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(900px 620px at 12% -8%, rgba(77,144,255,.10), transparent 60%),
+    radial-gradient(900px 640px at 96% 12%, rgba(35,214,164,.08), transparent 55%),
+    radial-gradient(1000px 800px at 50% 120%, rgba(138,139,255,.07), transparent 60%);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.5;
+  background-image:
+    linear-gradient(rgba(147,179,231,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(147,179,231,.045) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 0%, #000 20%, transparent 78%);
+}
+.wrap{max-width:1210px;margin:0 auto;padding:0 26px}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+ul{list-style:none}
+section{position:relative;scroll-margin-top:86px}
+main{scroll-margin-top:96px}
+
+/* type helpers */
+.eyebrow{
+  font-family:var(--mono); font-size:12px; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--acc); font-weight:600;
+}
+.eyebrow::before{content:"// ";opacity:.6}
+h1,h2,h3{font-family:var(--sora);line-height:1.12;font-weight:800;letter-spacing:-.02em}
+.lead{color:var(--mut);font-size:18px;max-width:64ch}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-head{margin-bottom:52px}
+.section-head h2{font-size:clamp(1.9rem,3.6vw,2.9rem);margin:16px 0 14px;max-width:24ch}
+.section-head .lead{margin-top:4px}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--sora);
+  font-weight:700;font-size:15.5px;letter-spacing:.01em;border-radius:14px;
+  padding:16px 28px;cursor:pointer;transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+  border:1px solid transparent;white-space:nowrap;
+}
+.btn svg{transition:transform .25s ease}
+.btn:hover svg{transform:translateX(4px)}
+.btn-primary{
+  background:var(--grad);color:#02101C;box-shadow:0 14px 38px -14px rgba(77,225,255,.55), inset 0 1px 0 rgba(255,255,255,.4);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 22px 46px -16px rgba(77,225,255,.65), inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-ghost{
+  background:rgba(255,255,255,.03);border-color:var(--line2);color:var(--txt);
+}
+.btn-ghost:hover{border-color:rgba(77,225,255,.6);background:rgba(77,225,255,.07);transform:translateY(-3px)}
+
+/* cards */
+.card{
+  background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:28px 26px;position:relative;overflow:hidden;
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:220px;opacity:0;transition:opacity .4s ease;
+  background:radial-gradient(340px 180px at 50% -20px, rgba(77,225,255,.12), transparent 70%)}
+.card:hover{transform:translateY(-6px);border-color:rgba(77,225,255,.42);box-shadow:var(--shadow)}
+.card:hover::before{opacity:1}
+
+/* ============ progress bar ============ */
+#progress{position:fixed;top:0;left:0;height:2.5px;width:0;z-index:120;
+  background:var(--grad);box-shadow:0 0 12px rgba(77,225,255,.7)}
+
+/* ============ top utility bar ============ */
+.topbar{
+  background:linear-gradient(90deg, rgba(9,20,36,.96), rgba(7,17,30,.96));
+  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--mut);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:36px}
+.topbar .tb-dot{color:var(--acc2)} .topbar a:hover{color:var(--txt)}
+.topbar .tb-right{display:flex;gap:22px;align-items:center}
+
+/* ============ header / nav ============ */
+header{position:sticky;top:0;z-index:100;transition:background .3s ease, border-color .3s ease, backdrop-filter .3s ease;
+  border-bottom:1px solid transparent;background:rgba(4,8,15,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header.scrolled{background:rgba(4,8,15,.86);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px;gap:26px}
+.brand{display:flex;align-items:center;gap:13px;flex:none}
+.brand .mark{width:44px;height:44px;filter:drop-shadow(0 0 14px rgba(56,217,240,.35))}
+.brand-name{font-family:var(--sora);font-weight:800;font-size:21px;letter-spacing:.02em;line-height:1}
+.brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.46em;color:var(--acc2);margin-top:4px;text-transform:uppercase}
+nav.menu{display:flex;align-items:center;gap:34px;margin-left:auto}
+nav.menu a{font-weight:600;font-size:15px;color:var(--mut);position:relative;padding:6px 0;transition:color .2s}
+nav.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;border-radius:2px;
+  background:var(--grad);transition:width .25s ease}
+nav.menu a:hover,nav.menu a.active{color:var(--txt)}
+nav.menu a:hover::after,nav.menu a.active::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-cta .btn{padding:11px 20px;font-size:14px;border-radius:11px}
+.burger{display:none;background:none;border:1px solid var(--line2);border-radius:10px;width:44px;height:44px;
+  cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger span{width:20px;height:2px;background:var(--txt);border-radius:2px;transition:transform .3s,opacity .3s}
+.mobile-menu{position:fixed;inset:0;z-index:150;background:rgba(3,6,12,.97);backdrop-filter:blur(20px);
+  display:flex;flex-direction:column;justify-content:center;padding:40px;gap:6px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:var(--sora);font-weight:700;font-size:clamp(1.7rem,6vw,2.4rem);padding:10px 0;border-bottom:1px solid rgba(147,179,231,.1);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu a small{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.2em}
+.mobile-menu .btn{margin-top:26px;justify-content:center}
+.mobile-close{position:absolute;top:22px;right:24px;width:46px;height:46px;border:1px solid var(--line2);border-radius:12px;background:none;color:var(--txt);font-size:22px;cursor:pointer}
+
+/* ============ hero ============ */
+.hero{padding:86px 0 0;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(77,225,255,.35);
+  background:rgba(77,225,255,.06);color:var(--acc);border-radius:100px;padding:8px 16px 8px 10px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px;
+}
+.hero-badge .pulse{width:8px;height:8px;border-radius:50%;background:var(--acc2);box-shadow:0 0 0 0 rgba(35,214,164,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(35,214,164,0)}100%{box-shadow:0 0 0 0 rgba(35,214,164,0)}}
+.hero h1{font-size:clamp(2.55rem,5.2vw,4.15rem);margin-bottom:22px;letter-spacing:-.03em}
+.hero .lead{font-size:clamp(1.03rem,1.5vw,1.18rem);max-width:56ch}
+.hero-cta{display:flex;gap:16px;margin:34px 0 30px;flex-wrap:wrap}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--mut);
+  border:1px solid var(--line2);border-radius:100px;padding:7px 13px;background:rgba(255,255,255,.02);
+  display:inline-flex;align-items:center;gap:7px;
+}
+.chip b{color:var(--acc2);font-weight:600}
+
+/* hero visual */
+.hero-visual{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center}
+.hv-ring{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.hv-ring svg{width:min(560px,92%);animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hv-orb{position:absolute;width:430px;height:430px;border-radius:50%;filter:blur(70px);opacity:.32;
+  background:radial-gradient(circle at 35% 35%, #2E8CFF, transparent 60%)}
+.hv-orb2{position:absolute;width:340px;height:340px;right:2%;top:14%;border-radius:50%;filter:blur(70px);opacity:.26;
+  background:radial-gradient(circle at 60% 40%, #17C9A0, transparent 62%)}
+.vial-wrap{position:relative;z-index:2;filter:drop-shadow(0 40px 60px rgba(0,0,0,.6))}
+.float-chip{
+  position:absolute;z-index:3;display:flex;align-items:center;gap:9px;
+  background:rgba(8,16,30,.82);border:1px solid var(--line2);border-radius:14px;padding:10px 15px;
+  backdrop-filter:blur(8px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--mut);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.7);animation:floaty 6s ease-in-out infinite;
+}
+.float-chip i{width:7px;height:7px;border-radius:2px;background:var(--grad);flex:none;transform:rotate(45deg)}
+.float-chip b{color:var(--txt);font-weight:600}
+.fc-1{top:8%;left:-2%;animation-delay:.2s}
+.fc-2{bottom:16%;left:-7%;animation-delay:1.6s}
+.fc-3{top:22%;right:-4%;animation-delay:.9s}
+.fc-4{bottom:4%;right:6%;animation-delay:2.4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+.seq-card{
+  position:absolute;z-index:3;left:-6%;bottom:-4%;max-width:230px;
+  background:rgba(7,13,24,.88);border:1px solid var(--line2);border-radius:16px;padding:13px 15px;
+  font-family:var(--mono);font-size:10.5px;color:var(--dim);backdrop-filter:blur(8px);
+  box-shadow:var(--shadow);animation:floaty 7s ease-in-out infinite;animation-delay:.5s;
+}
+.seq-card .bar{height:4px;border-radius:3px;margin-top:9px;background:rgba(147,179,231,.12);overflow:hidden}
+.seq-card .bar span{display:block;height:100%;width:78%;border-radius:3px;background:var(--grad);box-shadow:0 0 10px rgba(77,225,255,.5)}
+
+/* ============ stats band ============ */
+.stats{margin-top:80px;border:1px solid var(--line);border-radius:var(--r-lg);
+  background:linear-gradient(180deg,rgba(10,18,32,.55),rgba(6,11,20,.55));backdrop-filter:blur(6px);
+  display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+.stat{padding:34px 26px;position:relative}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat .num{font-family:var(--sora);font-weight:800;font-size:clamp(1.9rem,3.4vw,2.7rem);letter-spacing:-.02em;line-height:1;display:flex;align-items:baseline;gap:2px}
+.stat .num .u{font-size:.5em;color:var(--acc);margin-left:2px}
+.stat .lbl{margin-top:10px;font-size:13.5px;color:var(--dim);letter-spacing:.02em}
+.stat .num .pre{font-size:.55em;color:var(--acc);font-weight:700}
+
+/* ============ marquee ============ */
+.marquee{border-block:1px solid var(--line);padding:18px 0;margin:86px 0 0;overflow:hidden;
+  background:linear-gradient(90deg,rgba(6,11,20,.6),rgba(9,17,30,.6))}
+.marquee-track{display:flex;width:max-content;animation:scrollx 34s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track span{font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);white-space:nowrap;display:flex;align-items:center}
+.marquee-track span::after{content:"✦";color:var(--acc2);font-size:11px;opacity:.75;margin:0 30px}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ============ section base ============ */
+.pad{padding:104px 0}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:48px;flex-wrap:wrap}
+.head-row .lead{margin-top:12px}
+.head-link{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;color:var(--acc);text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.head-link:hover{color:var(--txt)}
+.head-link svg{transition:transform .25s}
+.head-link:hover svg{transform:translateX(5px)}
+
+/* why grid */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-card .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:var(--grad-soft);border:1px solid rgba(77,225,255,.28);margin-bottom:20px}
+.why-card .ico svg{width:25px;height:25px}
+.why-card h3{font-size:18.5px;margin-bottom:10px}
+.why-card p{font-size:14.5px;color:var(--mut)}
+
+/* products */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.prod-card{display:flex;flex-direction:column;min-height:270px}
+.prod-card .pshot{display:flex;justify-content:center;align-items:flex-end;margin:-10px -10px 6px;min-height:172px;
+  background:radial-gradient(120px 90px at 50% 84%, rgba(77,225,255,.09), transparent 72%);border-radius:16px}
+.prod-card .pshot .vsvg{width:116px;height:174px;display:block;filter:drop-shadow(0 14px 20px rgba(0,0,0,.42))}
+.vial-wrap .vsvg{width:196px;height:294px;display:block}
+.vial-wrap .pimg{width:clamp(196px,21vw,250px);height:auto;display:block;border-radius:18px;border:1px solid rgba(147,179,231,.25);box-shadow:0 34px 70px -24px rgba(0,0,0,.7)}
+.prod-card .pshot .pimg{width:158px;height:158px;max-width:100%;object-fit:contain;border-radius:14px;margin:0 auto -4px;display:block;border:1px solid rgba(147,179,231,.22);box-shadow:0 16px 26px -12px rgba(0,0,0,.5)}
+html[data-theme="light"] .vial-wrap .pimg{border-color:rgba(15,44,72,.18);box-shadow:0 26px 50px -26px rgba(20,60,110,.5)}
+html[data-theme="light"] .prod-card .pshot .pimg{border-color:rgba(15,44,72,.16);box-shadow:0 14px 22px -14px rgba(20,60,110,.3)}
+.prod-card .pshot.has-photo{background:transparent}
+html[data-theme="light"] .prod-card .pshot{background:radial-gradient(120px 90px at 50% 84%, rgba(11,147,198,.08), transparent 72%)}
+html[data-theme="light"] .prod-card .pshot .vsvg{filter:drop-shadow(0 12px 16px rgba(20,60,110,.26))}
+.prod-card .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--acc2);margin-bottom:14px;text-transform:uppercase}
+.prod-card h3{font-size:19.5px;margin-bottom:10px}
+.prod-card p{font-size:14.5px;color:var(--mut);flex:1}
+.prod-card .kw{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+.prod-card .kw span{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--dim);border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:rgba(255,255,255,.02)}
+.prod-card .foot{display:flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--acc);text-transform:uppercase}
+.prod-note{margin-top:26px;text-align:center;font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:.04em;border:1px dashed var(--line2);border-radius:14px;padding:14px 18px}
+
+/* process */
+.process{position:relative}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.fstep{position:relative;padding:24px 20px 22px;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r-md);transition:border-color .3s,transform .3s}
+.fstep:hover{border-color:rgba(77,225,255,.4);transform:translateY(-4px)}
+.fstep .n{font-family:var(--sora);font-weight:800;font-size:15px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.04em}
+.fstep h3{font-size:15.5px;margin:12px 0 8px}
+.fstep p{font-size:13px;color:var(--mut)}
+.fstep::after{content:"";position:absolute;top:29px;left:-17px;width:18px;height:2px;background:linear-gradient(90deg,transparent,rgba(77,225,255,.4))}
+.fstep:first-child::after{display:none}
+
+/* quality split */
+.quality-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.check-list{margin-top:28px;display:grid;gap:16px}
+.check-list li{display:flex;gap:14px;align-items:flex-start}
+.check-list .ck{flex:none;width:26px;height:26px;border-radius:8px;background:var(--grad-soft);border:1px solid rgba(77,225,255,.3);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.check-list b{font-weight:700;color:var(--txt)}
+.check-list p{font-size:14.5px;color:var(--mut);margin-top:1px}
+.qc-stack{display:grid;gap:18px}
+.qc-card{border:1px solid var(--line2);border-radius:var(--r-lg);background:linear-gradient(180deg,rgba(11,20,36,.9),rgba(7,13,24,.92));padding:26px;font-family:var(--mono);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.qc-card::before{content:"";position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(77,225,255,.14),transparent 70%)}
+.qc-card .row1{display:flex;justify-content:space-between;align-items:center;color:var(--mut);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.qc-card .row1 b{color:var(--acc);font-weight:600}
+.qc-card h4{font-family:var(--sora);font-size:18px;margin:14px 0 6px}
+.qc-card .mono-lines{font-size:12px;color:var(--dim);line-height:2.1;letter-spacing:.02em}
+.qc-card .mono-lines i{color:var(--acc2);font-style:normal}
+.gauge{display:flex;align-items:center;gap:16px;margin-top:14px}
+.gauge .gbar{flex:1;height:10px;border-radius:6px;background:rgba(147,179,231,.12);overflow:hidden}
+.gauge .gbar span{display:block;height:100%;border-radius:6px;background:var(--grad);width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.gauge .gval{font-size:15px;font-weight:600;color:var(--txt)}
+.gauge small{font-size:10px;color:var(--dim)}
+.seal-row{display:flex;gap:12px;flex-wrap:wrap}
+.seal{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line2);border-radius:12px;padding:11px 15px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--mut);background:rgba(255,255,255,.02)}
+.seal svg{width:17px;height:17px;stroke:var(--acc2)}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-txt .lead{margin-top:20px}
+.about-mission{display:grid;gap:14px;margin-top:34px}
+.about-mission li{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:14px;padding:16px 18px}
+.about-mission svg{flex:none;margin-top:2px}
+.about-mission b{font-size:15.5px}
+.about-mission p{font-size:14px;color:var(--mut)}
+.about-side{display:grid;gap:18px;position:sticky;top:110px}
+.value-band{display:flex;gap:16px;align-items:center}
+.quote-card{border:1px solid var(--line2);border-radius:var(--r-lg);padding:30px;background:linear-gradient(180deg,rgba(9,17,31,.9),rgba(6,11,20,.9));box-shadow:var(--shadow);position:relative}
+.quote-card .q{font-family:var(--sora);font-weight:600;font-size:clamp(1.15rem,1.6vw,1.35rem);line-height:1.5}
+.quote-card .a{display:flex;align-items:center;gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.quote-card .av{width:46px;height:46px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:var(--sora);font-weight:800;color:#02101C;font-size:15px;flex:none}
+.quote-card .nm{font-weight:700;font-size:14.5px}
+.quote-card .rl{font-size:12.5px;color:var(--dim);font-family:var(--mono);letter-spacing:.04em}
+
+/* faq */
+.faq-list{max-width:900px;margin:0 auto;display:grid;gap:14px}
+.faq details{border:1px solid var(--line);border-radius:var(--r-md);background:linear-gradient(180deg,var(--card2),var(--card));overflow:hidden;transition:border-color .3s}
+.faq details[open]{border-color:rgba(77,225,255,.4)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;padding:22px 26px;font-family:var(--sora);font-weight:700;font-size:17px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{flex:none;width:30px;height:30px;border-radius:9px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;transition:transform .3s, background .3s, border-color .3s;color:var(--acc);font-size:17px;font-weight:600}
+.faq details[open] summary .pm{transform:rotate(45deg);background:var(--grad);color:#02101C;border-color:transparent}
+.faq .ans{padding:0 26px 24px;color:var(--mut);font-size:15px;max-width:78ch}
+.faq .ans a{color:var(--acc);border-bottom:1px dashed rgba(77,225,255,.4)}
+
+/* contact / quote */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.contact-info .lead{margin-top:18px}
+.info-list{margin-top:30px;display:grid;gap:14px}
+.info-item{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:rgba(255,255,255,.02)}
+.info-item svg{flex:none;margin-top:2px}
+.info-item b{display:block;font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;font-weight:600}
+.info-item span,.info-item a{font-size:15px;color:var(--txt)}
+.form-card{border:1px solid var(--line2);border-radius:var(--r-lg);padding:38px;background:linear-gradient(180deg,rgba(11,20,36,.8),rgba(6,11,20,.9));box-shadow:var(--shadow)}
+.form-card h3{font-size:22px;margin-bottom:6px}
+.form-card .sub{color:var(--mut);font-size:14.5px;margin-bottom:26px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f-field{display:flex;flex-direction:column;gap:8px}
+.f-field.full{grid-column:1/-1}
+.f-field label{font-size:12.5px;font-weight:700;color:var(--mut);letter-spacing:.04em}
+.f-field input,.f-field select,.f-field textarea{
+  background:rgba(3,8,15,.7);border:1px solid var(--line2);border-radius:11px;color:var(--txt);
+  font-family:var(--body);font-size:15px;padding:13px 15px;outline:none;transition:border-color .25s, box-shadow .25s;width:100%;
+}
+.f-field select option{background:#0A1424}
+.f-field textarea{min-height:120px;resize:vertical}
+.f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(77,225,255,.14)}
+.f-field input::placeholder,.f-field textarea::placeholder{color:#4d6280}
+.form-note{font-size:12.5px;color:var(--dim);margin-top:16px;font-family:var(--mono);letter-spacing:.03em}
+.form-ok{display:none;margin-top:18px;border:1px solid rgba(35,214,164,.45);background:rgba(35,214,164,.08);color:#A8F5DE;border-radius:12px;padding:15px 18px;font-size:14.5px}
+.form-ok.show{display:block;animation:fadein .4s}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* footer */
+footer{border-top:1px solid var(--line);background:linear-gradient(180deg,rgba(4,7,13,.4),rgba(3,5,10,.9));padding:70px 0 0;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:44px;padding-bottom:54px}
+.foot-brand p{color:var(--mut);font-size:14.5px;margin-top:18px;max-width:34ch}
+.foot-brand .mark{width:52px;height:52px}
+.foot h4{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--acc);margin-bottom:20px;font-weight:600}
+.foot ul{display:grid;gap:11px}
+.foot ul a,.foot ul li{font-size:14.5px;color:var(--mut);transition:color .2s}
+.foot ul a:hover{color:var(--txt)}
+.foot-contact li{display:flex;gap:10px;align-items:flex-start}
+.foot-contact svg{flex:none;margin-top:4px}
+.foot-bottom{border-top:1px solid var(--line);padding:24px 0;font-size:13px;color:var(--dim)}
+.foot-bottom .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.legal{padding:26px 0 44px;font-size:12px;color:#5a6e8c;line-height:1.8;border-top:1px solid var(--line);background:rgba(2,4,8,.5)}
+.legal .wrap{max-width:1210px}
+.legal b{color:var(--dim)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.65,.25,1),transform .8s cubic-bezier(.2,.65,.25,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
+
+/* scroll to top */
+#toTop{position:fixed;right:22px;bottom:22px;z-index:90;width:48px;height:48px;border-radius:14px;border:1px solid var(--line2);
+  background:rgba(8,16,30,.85);backdrop-filter:blur(8px);color:var(--acc);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;display:flex;align-items:center;justify-content:center}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
+
+/* responsive */
+@media(max-width:1080px){
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .fstep::after{display:none}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{min-height:460px}
+  .quality-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:48px}
+  .about-side{position:static}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  nav.menu,.nav-cta .btn-desktop{display:none}
+  .burger{display:flex}
+  .topbar .tb-right{display:none}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:none}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .prod-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr}
+  .pad{padding:76px 0}
+  .form-card{padding:26px 20px}
+  .foot-grid{grid-template-columns:1fr;gap:34px}
+  .float-chip{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+
+/* ============ theme toggle ============ */
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;
+  border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--mut);cursor:pointer;
+  transition:color .25s,border-color .25s,background .25s}
+.theme-toggle:hover{color:var(--txt);border-color:rgba(77,225,255,.55);background:rgba(77,225,255,.08)}
+.theme-toggle svg{width:16px;height:16px}
+.theme-toggle .ic-moon{display:block}
+.theme-toggle .ic-sun{display:none}
+html[data-theme="light"] .theme-toggle .ic-moon{display:none}
+html[data-theme="light"] .theme-toggle .ic-sun{display:block}
+
+/* ============ light theme overrides ============ */
+html[data-theme="light"]{
+  --bg0:#EDF2F9; --bg2:#FFFFFF; --bg3:#E3ECF6;
+  --card:rgba(255,255,255,.92); --card2:#FFFFFF;
+  --line:rgba(15,44,72,.13); --line2:rgba(15,44,72,.24);
+  --txt:#0A1B2B; --mut:#42597A; --dim:#5F7691;
+  --acc:#0B93C6; --acc2:#0E8F6F;
+  --shadow:0 24px 60px -30px rgba(25,60,105,.4);
+}
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1100px 700px at 88% -12%, rgba(14,180,196,.11), transparent 60%),
+    radial-gradient(1000px 700px at -6% 18%, rgba(46,140,255,.10), transparent 60%),
+    var(--bg0);
+}
+html[data-theme="light"] body::after{
+  background-image:
+    linear-gradient(rgba(15,44,72,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,44,72,.05) 1px, transparent 1px);
+}
+html[data-theme="light"] .topbar{background:linear-gradient(90deg,#FFFFFF,#EDF4FC);color:var(--dim)}
+html[data-theme="light"] header{background:rgba(255,255,255,.72)}
+html[data-theme="light"] header.scrolled{background:rgba(255,255,255,.93)}
+html[data-theme="light"] .theme-toggle{background:rgba(15,44,72,.05)}
+html[data-theme="light"] .hero-badge{background:rgba(11,147,198,.08);border-color:rgba(11,147,198,.42)}
+html[data-theme="light"] .chip{background:rgba(255,255,255,.78);color:var(--dim)}
+html[data-theme="light"] .btn-ghost{background:rgba(15,44,72,.045)}
+html[data-theme="light"] .stats{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(247,250,253,.92));border-color:var(--line2)}
+html[data-theme="light"] .stat+.stat{border-left-color:var(--line)}
+html[data-theme="light"] .marquee{background:linear-gradient(90deg,#FFFFFF,#EFF5FC);border-color:var(--line)}
+html[data-theme="light"] .fstep{background:linear-gradient(180deg,#FFFFFF,#F5F9FE)}
+html[data-theme="light"] .faq details{background:linear-gradient(180deg,#FFFFFF,#F7FAFE)}
+html[data-theme="light"] .about-mission li,.info-item,.check-list .ck{background:#fff}
+html[data-theme="light"] .seal{background:rgba(15,44,72,.035)}
+html[data-theme="light"] .prod-note{color:var(--dim)}
+html[data-theme="light"] .float-chip{background:rgba(255,255,255,.9);box-shadow:0 18px 40px -20px rgba(25,60,105,.4)}
+html[data-theme="light"] .seq-card{background:rgba(255,255,255,.94);box-shadow:0 18px 40px -22px rgba(25,60,105,.45)}
+html[data-theme="light"] .seq-card .bar{background:rgba(15,44,72,.12)}
+html[data-theme="light"] #toTop{background:rgba(255,255,255,.92);border-color:var(--line2)}
+html[data-theme="light"] footer{background:linear-gradient(180deg,#FFFFFF,#E7EFF8)}
+html[data-theme="light"] footer .legal{background:rgba(235,242,249,.75);color:#5A7188}
+html[data-theme="light"] .mobile-menu{background:rgba(248,251,254,.98)}
+html[data-theme="light"] .mobile-menu a{border-bottom-color:var(--line)}
+/* dark feature panels stay dark on light theme */
+html[data-theme="light"] .qc-card,
+html[data-theme="light"] .form-card,
+html[data-theme="light"] .quote-card{
+  --txt:#EAF3FF; --mut:#A9BBD6; --dim:#88A0C0; --acc:#4DE1FF; --acc2:#23D6A4;
+  --line:rgba(147,179,231,.14); --line2:rgba(147,179,231,.32);
+}
+/* ============ floating WhatsApp button (all pages, follows scroll) ============ */
+.wa-float{position:fixed;right:22px;bottom:88px;z-index:97;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#2BE06F,#1EBE5D);color:#fff;
+  box-shadow:0 14px 30px -8px rgba(37,211,102,.55),0 4px 12px rgba(0,0,0,.3);
+  transition:transform .25s ease,box-shadow .25s ease;animation:waPop .7s cubic-bezier(.2,.9,.3,1.15) .5s backwards}
+.wa-float:hover,.wa-float:focus-visible{transform:translateY(-4px) scale(1.05);box-shadow:0 20px 38px -10px rgba(37,211,102,.68)}
+.wa-float svg{width:31px;height:31px;fill:#fff;display:block}
+.wa-float::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,.55);animation:waRing 2.6s ease-out infinite;pointer-events:none}
+@keyframes waRing{0%{transform:scale(.55);opacity:.95}70%,100%{transform:scale(1.28);opacity:0}}
+@keyframes waPop{from{opacity:0;transform:translateY(26px) scale(.5)}to{opacity:1;transform:none}}
+.wa-float .tip{position:absolute;right:calc(100% + 14px);top:50%;transform:translateY(-50%) translateX(8px);
+  background:rgba(10,20,34,.95);border:1px solid var(--line2);color:var(--txt);
+  padding:8px 13px;border-radius:11px;font-family:var(--body);font-weight:600;font-size:13px;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.wa-float:hover .tip,.wa-float:focus-visible .tip{opacity:1;transform:translateY(-50%) translateX(0)}
+html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
+@media(max-width:760px){
+  .wa-float{width:54px;height:54px;right:16px;bottom:80px}
+  .wa-float .tip{display:none}
+}
+@media (prefers-reduced-motion:reduce){.wa-float,.wa-float::after{animation:none}}</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ============ TOP UTILITY BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div><span class="tb-dot">●</span>&nbsp; HPLC-verified purity ≥99% &nbsp;·&nbsp; COA on every batch &nbsp;·&nbsp; Global research-grade supply</div>
+    <div class="tb-right">
+      <a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a>
+      <span style="opacity:.35">|</span>
+      <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Switch between dark and light theme">
+        <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/></svg>
+        <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="sitehead">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="QELVION Biotech home">
+      <svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="mk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#55E6FF"/><stop offset=".55" stop-color="#38D9F0"/><stop offset="1" stop-color="#1FD6A4"/></linearGradient></defs>
+        <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z" fill="none" stroke="#123044" stroke-width="11" stroke-linejoin="round"/>
+        <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z" fill="none" stroke="url(#mk)" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M100 54 C 66 76, 66 124, 100 146" fill="none" stroke="#DDF8FF" stroke-width="3.6" stroke-linecap="round" opacity=".9"/>
+        <path d="M100 54 C 134 76, 134 124, 100 146" fill="none" stroke="url(#mk)" stroke-width="6.2" stroke-linecap="round"/>
+        <path d="M164.6 130 C 186 128, 194 148, 180 168" fill="none" stroke="url(#mk)" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="10.5" fill="url(#mk)"/><circle cx="100" cy="100" r="4" fill="#04121A"/>
+        <circle cx="180" cy="168" r="5.5" fill="url(#mk)"/>
+      </svg>
+      <span>
+        <span class="brand-name">QELVION</span>
+        <div class="brand-sub">BIOTECH</div>
+      </span>
+    </a>
+    <nav class="menu" aria-label="Primary">
+      <a href="#products">Products</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="#process">Manufacturing</a>
+      <a href="#quality">Quality</a>
+      <a href="#about">Why QELVION</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary btn-desktop" href="#contact">Request a Quote
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="menuClose" aria-label="Close menu">✕</button>
+  <a href="#products">Products <small>01</small></a>
+  <a href="catalog.html">Catalog <small>02</small></a>
+  <a href="#process">Manufacturing <small>03</small></a>
+  <a href="#quality">Quality <small>04</small></a>
+  <a href="#about">Why QELVION <small>05</small></a>
+  <a href="#faq">FAQ <small>06</small></a>
+  <a href="#contact">Contact <small>07</small></a>
+  <a class="btn btn-primary" href="#contact">Request a Quote</a>
+</div>
+
+<main id="home">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge"><span class="pulse"></span> Research-Grade Peptide Manufacturer &amp; CDMO</div>
+      <h1>Precision peptide manufacturing, <span class="grad-text">from molecule to vial.</span></h1>
+      <p class="lead">QELVION Biotech partners with research institutions, biotech and pharmaceutical R&amp;D teams, and licensed distributors — delivering HPLC-verified research peptides, custom synthesis and private-label manufacturing, with a Certificate of Analysis on every single batch.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">Request a Quote
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#products">Explore the Portfolio</a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><b>≥99%</b> HPLC purity</span>
+        <span class="chip"><b>COA</b> every batch</span>
+        <span class="chip"><b>GMP-aligned</b> facility</span>
+        <span class="chip"><b>35+</b> countries served</span>
+      </div>
+    </div>
+
+    <!-- hero visual -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hv-orb"></div>
+      <div class="hv-orb2"></div>
+      <div class="hv-ring">
+        <svg viewBox="0 0 560 560" fill="none">
+          <circle cx="280" cy="280" r="272" stroke="rgba(147,179,231,.09)" stroke-width="1" stroke-dasharray="3 9"/>
+          <circle cx="280" cy="280" r="248" stroke="rgba(77,225,255,.10)" stroke-width="1"/>
+          <circle cx="280" cy="280" r="222" stroke="rgba(147,179,231,.07)" stroke-width="1" stroke-dasharray="1 7"/>
+          <g stroke="rgba(77,225,255,.5)" stroke-width="1.4">
+            <circle cx="280" cy="32" r="4" fill="#0A1424"/>
+            <circle cx="507" cy="186" r="4" fill="#0A1424"/>
+            <circle cx="443" cy="462" r="4" fill="#0A1424"/>
+            <circle cx="117" cy="462" r="4" fill="#0A1424"/>
+            <circle cx="53" cy="186" r="4" fill="#0A1424"/>
+          </g>
+          <path d="M280 32 L507 186 L443 462 L117 462 L53 186 Z" stroke="rgba(77,225,255,.10)" stroke-width="1" stroke-dasharray="2 8"/>
+        </svg>
+      </div>
+
+      <div class="vial-wrap" id="heroVial"></div>
+
+      <div class="float-chip fc-1"><i></i><span>HPLC <b>≥ 99%</b></span></div>
+      <div class="float-chip fc-2"><i></i><span>COA · <b>Batch QV-8821</b></span></div>
+      <div class="float-chip fc-3"><i></i><span>Sterile · <b>Lyophilized</b></span></div>
+      <div class="float-chip fc-4"><i></i><span>Cold-chain <b>Global dispatch</b></span></div>
+      <div class="seq-card">
+        <div>QC RELEASE · HPLC TRACE</div>
+        <div style="color:var(--mut);margin-top:5px">Purity <b style="color:var(--acc2)">99.31%</b> · Lot QV-8821 · Identity MS ✓</div>
+        <div class="bar"><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- stats -->
+  <div class="wrap">
+    <div class="stats rv">
+      <div class="stat"><div class="num"><span class="pre">7+</span></div><div class="lbl">Years of peptide R&amp;D &amp; manufacturing</div></div>
+      <div class="stat"><div class="num"><span data-count="120" data-suf="+">0</span></div><div class="lbl">Research-grade catalog SKUs</div></div>
+      <div class="stat"><div class="num"><span class="pre">≥</span><span data-count="99">0</span><span class="u">%</span></div><div class="lbl">Typical purity, verified by HPLC</div></div>
+      <div class="stat"><div class="num"><span data-count="35" data-suf="+">0</span></div><div class="lbl">Countries &amp; regions served</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Metabolic Research&nbsp;Regenerative R&amp;D&nbsp;Dermal &amp; Cosmetic Science&nbsp;Longevity Studies&nbsp;Peptide Therapeutics Discovery&nbsp;Custom Synthesis&nbsp;Private Label&nbsp;Lyophilized Vials</span>
+    <span>Metabolic Research&nbsp;Regenerative R&amp;D&nbsp;Dermal &amp; Cosmetic Science&nbsp;Longevity Studies&nbsp;Peptide Therapeutics Discovery&nbsp;Custom Synthesis&nbsp;Private Label&nbsp;Lyophilized Vials</span>
+  </div>
+</div>
+
+<!-- ============ WHY ============ -->
+<section class="pad" id="why">
+  <div class="wrap">
+    <div class="head-row rv">
+      <div>
+        <div class="eyebrow">Why QELVION</div>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin-top:16px">Built like a manufacturer.<br>Run like a science partner.</h2>
+      </div>
+      <a class="head-link" href="#contact">Talk to our team
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="why-grid">
+      <div class="card why-card rv">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/><path d="M14 7h6v6"/></svg></div>
+        <h3>Verified Purity, Every Batch</h3>
+        <p>HPLC &amp; mass-spectrometry verified, typically ≥99% pure. Every batch ships with its own Certificate of Analysis — purity is data, not a promise.</p>
+      </div>
+      <div class="card why-card rv rv-d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>GMP-Aligned Facility</h3>
+        <p>Controlled synthesis, purification and sterile lyophilization environments, with documented processes and full batch traceability from resin to vial.</p>
+      </div>
+      <div class="card why-card rv rv-d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17c4-8 12-8 16 0"/><path d="M12 3c1.5 2.5 1.5 6 0 9s-1.5 6 0 9M12 3c-1.5 2.5-1.5 6 0 9s1.5 6 0 9"/><circle cx="12" cy="3" r="1.6"/><circle cx="12" cy="21" r="1.6"/></svg></div>
+        <h3>Custom &amp; Bulk Synthesis</h3>
+        <p>From milligram-scale analog design to kilogram-scale production runs. Confidential sequences, modifications, blends and private-label programs.</p>
+      </div>
+      <div class="card why-card rv rv-d3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
+        <h3>Global Supply, Real Support</h3>
+        <p>Cold-chain international logistics with end-to-end tracking, plus responsive scientists and account managers supporting you before and after order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="pad" id="products" style="padding-top:40px">
+  <div class="wrap">
+    <div class="section-head rv">
+      <div class="eyebrow">Research Portfolio</div>
+      <h2>Peptide capabilities across<br>the research spectrum</h2>
+      <p class="lead">Lyophilized research peptides and custom molecules organized by application area. Full 120+ SKU catalog, technical datasheets and COAs available on request.</p>
+      <div style="margin-top:22px">
+        <a class="head-link" href="catalog.html">Browse the full product catalog
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="prod-grid">
+      <div class="card prod-card rv">
+        <div class="tag">P-01 · Metabolic</div>
+        <h3>Metabolic &amp; Endocrinology Research</h3>
+        <p>Peptide tools for energy-balance, appetite-signaling, glycemic and lipid-metabolism studies — including the AOD-9604, MOTS-c and AICAR research lines.</p>
+        <div class="kw"><span>AOD-9604</span><span>MOTS-c</span><span>AICAR</span></div>
+        <div class="foot">Catalog &amp; COA →</div>
+      </div>
+      <div class="card prod-card rv rv-d1">
+        <div class="tag">P-02 · Regenerative</div>
+        <h3>Regenerative &amp; Recovery Research</h3>
+        <p>Peptides investigated in tissue-repair, angiogenic, tendon and ligament recovery and gut-barrier models — anchored by our BPC-157 and TB-500 (Thymosin β4) research lines.</p>
+        <div class="kw"><span>BPC-157</span><span>TB-500</span><span>Ipamorelin</span></div>
+        <div class="foot">Catalog &amp; COA →</div>
+      </div>
+      <div class="card prod-card rv rv-d2">
+        <div class="tag">P-03 · Dermal</div>
+        <h3>Dermal &amp; Cosmetic Science</h3>
+        <p>Bioactive peptides for in-vitro collagen-stimulation, skin-barrier and hair-follicle programs — including copper peptides (GHK-Cu, AHK-Cu) and matrikine actives (Pal-KTTKS).</p>
+        <div class="kw"><span>GHK-Cu</span><span>AHK-Cu</span><span>Pal-KTTKS</span></div>
+        <div class="foot">Catalog &amp; COA →</div>
+      </div>
+      <div class="card prod-card rv">
+        <div class="tag">P-04 · Longevity</div>
+        <h3>Longevity &amp; Cellular Health</h3>
+        <p>Mitochondrial, NAD-pathway, senescence and cellular-energy research peptides for aging-science laboratories — flagship lines include NAD+, Epithalon and SS-31.</p>
+        <div class="kw"><span>NAD+</span><span>Epithalon</span><span>SS-31</span></div>
+        <div class="foot">Catalog &amp; COA →</div>
+      </div>
+      <div class="card prod-card rv rv-d1">
+        <div class="tag">P-05 · Custom</div>
+        <h3>Custom Synthesis &amp; Analog Design</h3>
+        <p>Confidential sequence synthesis with modifications — D-amino acids, PEGylation, labeling, cyclization and more — from mg to kg.</p>
+        <div class="kw"><span>SPPS / Fmoc</span><span>Analog design</span><span>NDA welcome</span></div>
+        <div class="foot">Start a project →</div>
+      </div>
+      <div class="card prod-card rv rv-d2">
+        <div class="tag">P-06 · Blends</div>
+        <h3>Blends &amp; Private Label</h3>
+        <p>Precision-formulated research blends — GLOW, KLOW and Wolverine-style BPC-157 + TB-500 combinations — plus fully private-labeled kits for licensed distributors.</p>
+        <div class="kw"><span>GLOW · KLOW</span><span>BPC + TB blend</span><span>Private label</span></div>
+        <div class="foot">Partner with us →</div>
+      </div>
+    </div>
+
+    <div class="prod-note rv">All QELVION products are research &amp; development reagents — for laboratory use only, not for human or veterinary use.</div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="pad process" id="process" style="padding-top:60px">
+  <div class="wrap">
+    <div class="section-head rv" style="text-align:center">
+      <div class="eyebrow">Manufacturing</div>
+      <h2 style="margin-left:auto;margin-right:auto">One batch. Five checkpoints.<br>Zero shortcuts.</h2>
+    </div>
+    <div class="flow">
+      <div class="fstep rv"><div class="n">01</div><h3>Solid-Phase Synthesis</h3><p>Automated SPPS with raw-material and sequence QC at intake.</p></div>
+      <div class="fstep rv rv-d1"><div class="n">02</div><h3>Purification &amp; Verification</h3><p>Preparative HPLC purification; mass-spectrometry identity checks.</p></div>
+      <div class="fstep rv rv-d2"><div class="n">03</div><h3>Lyophilization &amp; Fill</h3><p>Freeze-dried and filled in sterile, depyrogenated vials under controlled conditions.</p></div>
+      <div class="fstep rv rv-d3"><div class="n">04</div><h3>QC Release &amp; COA</h3><p>HPLC purity, MS identity and residual-solvent analysis archived per batch.</p></div>
+      <div class="fstep rv rv-d4"><div class="n">05</div><h3>Cold-Chain Dispatch</h3><p>Insulated, temperature-monitored international shipping with tracking.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUALITY ============ -->
+<section class="pad" id="quality">
+  <div class="wrap quality-grid">
+    <div class="rv">
+      <div class="eyebrow">Quality &amp; Certifications</div>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:16px 0 16px">Quality is not a claim.<br>It’s a <span class="grad-text">certificate.</span></h2>
+      <p class="lead">Every QELVION batch is released through documented QC — in-house analytical testing plus independent third-party verification available on request. Full traceability from raw material to finished vial.</p>
+      <ul class="check-list">
+        <li>
+          <span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#23D6A4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/></svg></span>
+          <div><b>COA with every batch</b><p>HPLC purity, mass-spectrometry identity and residual-solvent data, archived and shareable.</p></div>
+        </li>
+        <li>
+          <span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#23D6A4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/></svg></span>
+          <div><b>Third-party verification</b><p>Independent laboratory testing available on request for qualifying orders.</p></div>
+        </li>
+        <li>
+          <span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#23D6A4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/></svg></span>
+          <div><b>Full batch traceability</b><p>Documented process control across synthesis, purification, fill and release.</p></div>
+        </li>
+        <li>
+          <span class="ck"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#23D6A4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/></svg></span>
+          <div><b>Complete documentation</b><p>COA, MSDS, HPLC chromatograms and technical datasheets with every delivery.</p></div>
+        </li>
+      </ul>
+      <div class="seal-row" style="margin-top:30px">
+        <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg> GMP-Aligned Facility</span>
+        <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7 9.5 17.5 4 12"/></svg> HPLC / MS Verified</span>
+        <span class="seal"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 9 9 6 9-6"/></svg> Global Cold-Chain</span>
+      </div>
+    </div>
+
+    <div class="qc-stack rv">
+      <div class="qc-card">
+        <div class="row1"><span>Certificate of Analysis</span><b>QV-2049 · LOT 8812</b></div>
+        <h4>Batch Release Record</h4>
+        <div class="mono-lines">
+          <i>▸</i> PEPTIDE CONTENT ........ <b style="color:var(--txt)">99.38%</b><br>
+          <i>▸</i> MS (M+H)⁺ ................. <b style="color:var(--txt)">2049.12 / 2049.10</b><br>
+          <i>▸</i> HPLC (214 nm) .......... <b style="color:var(--txt)">CONFORMS</b><br>
+          <i>▸</i> ACETATE CONTENT ....... <b style="color:var(--txt)">7.2%</b><br>
+          <i>▸</i> ENDOTOXIN ................ <b style="color:var(--txt)">CONFORMS</b><br>
+          <i>▸</i> MOISTURE ................... <b style="color:var(--txt)">CONFORMS</b>
+        </div>
+        <div class="gauge"><div class="gbar"><span class="gfill" data-w="99"></span></div><div class="gval"><span data-count="99">0</span>%</div></div>
+        <div class="row1" style="margin-top:14px"><span>Verified · In-house QC + Independent Lab</span><b>RELEASED</b></div>
+      </div>
+      <div class="qc-card" style="border-style:dashed">
+        <div class="row1"><span>Analytical Lab</span><b>FULL TRACEABILITY</b></div>
+        <h4>Independent Verification Available</h4>
+        <div class="mono-lines">Samples from each production batch can be submitted to accredited independent laboratories — <i>you</i> choose the standard of proof.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="pad" id="about" style="padding-top:40px">
+  <div class="wrap about-grid">
+    <div class="about-txt rv">
+      <div class="eyebrow">About QELVION</div>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:16px 0 6px">Chemistry you can trust,<br>manufacturing you can scale.</h2>
+      <p class="lead">QELVION Biotech was founded by peptide chemists who believed the research community deserved a supplier that behaves like a manufacturer: rigorous, transparent and responsive. For more than seven years, our laboratories have synthesized, purified and lyophilized research-grade peptides for institutions and companies across 35+ countries.</p>
+      <p class="lead" style="margin-top:16px">We are not a marketplace. We are the source — offering custom synthesis, quality-controlled catalog peptides and private-label programs under one roof, with scientists who answer when you call.</p>
+      <ul class="about-mission">
+        <li>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
+          <div><b>Research institutions &amp; biotech R&amp;D</b><p>Catalog peptides, custom analogs and documentation for reproducible science.</p></div>
+        </li>
+        <li>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+          <div><b>Cosmetic &amp; dermocosmetic R&amp;D</b><p>High-purity bioactives and in-vitro actives for next-generation formulations.</p></div>
+        </li>
+        <li>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div><b>Licensed distributors &amp; clinics</b><p>Volume pricing, private label and compliance-first documentation programs.</p></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="about-side">
+      <div class="quote-card rv">
+        <div class="q">“We needed a supplier that treats purity as data. QELVION’s COAs and responsiveness made them our default partner within two orders.”</div>
+        <div class="a">
+          <span class="av">JM</span>
+          <span><span class="nm">Research Director</span><br><span class="rl">Independent Peptide Research Laboratory</span></span>
+        </div>
+      </div>
+      <div class="card rv rv-d1" style="padding:24px 26px">
+        <div class="value-band">
+          <div style="font-family:var(--sora);font-weight:800;font-size:34px;line-height:1" class="grad-text">24h</div>
+          <p style="font-size:14px;color:var(--mut)">Average first response time to catalog &amp; COA requests — every working day.</p>
+        </div>
+      </div>
+      <div class="card rv rv-d2" style="padding:24px 26px">
+        <div class="value-band">
+          <div style="font-family:var(--sora);font-weight:800;font-size:34px;line-height:1" class="grad-text">100%</div>
+          <p style="font-size:14px;color:var(--mut)">Batches released with full documentation — no batch leaves without its COA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="pad" id="faq">
+  <div class="wrap">
+    <div class="section-head rv" style="text-align:center">
+      <div class="eyebrow">Knowledge Base</div>
+      <h2 style="margin-left:auto;margin-right:auto">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="rv">
+        <summary>What types of peptides does QELVION manufacture?<span class="pm">+</span></summary>
+        <div class="ans">We manufacture lyophilized research-grade peptides across metabolic, regenerative, dermal and longevity research areas — flagship catalog lines include BPC-157, TB-500, GHK-Cu, AHK-Cu, NAD+ and Epithalon — together with custom peptides, modified analogs, precision research blends and private-label programs. All products are supplied as lyophilized powders in sterile vials for laboratory use.</div>
+      </details>
+      <details class="rv rv-d1">
+        <summary>What purity and quality control can I expect?<span class="pm">+</span></summary>
+        <div class="ans">Typical purity is ≥99%, verified by HPLC and mass spectrometry. Each batch is released with a Certificate of Analysis covering peptide content, identity, residual solvents and more — and third-party laboratory verification is available on request.</div>
+      </details>
+      <details class="rv rv-d2">
+        <summary>Do you provide documentation with every order?<span class="pm">+</span></summary>
+        <div class="ans">Yes. Every shipment includes the batch COA, MSDS and technical datasheets, with HPLC chromatograms and full traceability records available on request.</div>
+      </details>
+      <details class="rv rv-d3">
+        <summary>Can you synthesize custom or modified peptides?<span class="pm">+</span></summary>
+        <div class="ans">Absolutely. We accept confidential custom-synthesis projects from milligram research scale to kilogram production: sequence modifications, D-amino acids, cyclization, PEGylation, labeling and more. NDAs are welcome before any technical discussion.</div>
+      </details>
+      <details class="rv rv-d4">
+        <summary>What are your minimum order quantities?<span class="pm">+</span></summary>
+        <div class="ans">MOQs are flexible. Research institutions can start with small first orders to evaluate quality, purity documentation and service, while distributors and production partners benefit from dedicated volume pricing and private-label programs.</div>
+      </details>
+      <details class="rv">
+        <summary>Do you ship internationally?<span class="pm">+</span></summary>
+        <div class="ans">Yes — we serve customers in 35+ countries and regions with insulated, temperature-monitored cold-chain shipping and end-to-end tracking through trusted international carriers. Standard catalog orders typically dispatch within 3 working days.</div>
+      </details>
+      <details class="rv rv-d1">
+        <summary>Why do your products state “research use only”?<span class="pm">+</span></summary>
+        <div class="ans">QELVION products are research and development reagents manufactured for laboratory study. They are not medicines, dietary supplements or cosmetics, are not intended for human or veterinary use, and are not for self-administration. We do not provide medical advice of any kind — research into biological mechanisms should always be conducted under appropriate ethical and regulatory oversight.</div>
+      </details>
+      <details class="rv rv-d2">
+        <summary>How do I start an order or partnership?<span class="pm">+</span></summary>
+        <div class="ans">Send us a request through the quote form or email — tell us your research focus or catalog list, and we will reply within one business day with availability, documentation samples and a formal quotation.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT / QUOTE ============ -->
+<section class="pad" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info rv">
+      <div class="eyebrow">Get Started</div>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin:16px 0 6px">Request a quote,<br>or start a conversation.</h2>
+      <p class="lead">Whether you need one catalog vial for a pilot study or a kilogram-scale custom run, our team responds within one business day.</p>
+      <div class="info-list">
+        <div class="info-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6L22 7"/></svg>
+          <div><b>Email</b><a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a></div>
+        </div>
+        <div class="info-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <div><b>Response time</b><span>Within 1 business day · Mon–Sat, 24/7 support line for partners</span></div>
+        </div>
+        <div class="info-item">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          <div><b>Documentation</b><span>COA · HPLC traces · MSDS · technical datasheets — included with every order</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card rv rv-d1">
+      <h3>Request a Quote</h3>
+      <p class="sub">Tell us about your research or catalog needs — we’ll reply within one business day.</p>
+      <form id="quoteForm" novalidate>
+        <div class="f-grid">
+          <div class="f-field">
+            <label for="fName">Full name *</label>
+            <input id="fName" name="name" type="text" placeholder="Dr. Jane Miller" required autocomplete="name">
+          </div>
+          <div class="f-field">
+            <label for="fOrg">Organization *</label>
+            <input id="fOrg" name="org" type="text" placeholder="Research Institute / Company" required>
+          </div>
+          <div class="f-field">
+            <label for="fMail">Work email *</label>
+            <input id="fMail" name="email" type="email" placeholder="you@institute.edu" required autocomplete="email">
+          </div>
+          <div class="f-field">
+            <label for="fType">I am a…</label>
+            <select id="fType" name="type">
+              <option>Research institution / laboratory</option>
+              <option>Biotech / pharmaceutical R&amp;D</option>
+              <option>Cosmetic / dermocosmetic R&amp;D</option>
+              <option>Licensed distributor / clinic</option>
+              <option>Custom synthesis project</option>
+            </select>
+          </div>
+          <div class="f-field full">
+            <label for="fMsg">Peptides of interest / project details *</label>
+            <textarea id="fMsg" name="message" placeholder="e.g. Catalog list with COAs, or custom analog: sequence, scale and timeline…" required></textarea>
+          </div>
+        </div>
+        <div style="margin-top:20px">
+          <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send Request
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg>
+          </button>
+        </div>
+        <div class="form-note">🔒 Your information stays confidential — used only to prepare your quotation.</div>
+        <div class="form-ok" id="formOk">✓ Thank you — your request has been logged. Our team will reply within one business day.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#home" style="margin-bottom:6px">
+        <svg class="mark" viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="mkf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#55E6FF"/><stop offset=".55" stop-color="#38D9F0"/><stop offset="1" stop-color="#1FD6A4"/></linearGradient></defs>
+          <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z" fill="none" stroke="#123044" stroke-width="11" stroke-linejoin="round"/>
+          <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z" fill="none" stroke="url(#mkf)" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M100 54 C 66 76, 66 124, 100 146" fill="none" stroke="#DDF8FF" stroke-width="3.6" stroke-linecap="round" opacity=".9"/>
+          <path d="M100 54 C 134 76, 134 124, 100 146" fill="none" stroke="url(#mkf)" stroke-width="6.2" stroke-linecap="round"/>
+          <path d="M164.6 130 C 186 128, 194 148, 180 168" fill="none" stroke="url(#mkf)" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="10.5" fill="url(#mkf)"/><circle cx="100" cy="100" r="4" fill="#04121A"/>
+          <circle cx="180" cy="168" r="5.5" fill="url(#mkf)"/>
+        </svg>
+        <span><span class="brand-name">QELVION</span><div class="brand-sub">BIOTECH</div></span>
+      </a>
+      <p>Research-grade peptide manufacturing and CDMO partnership — synthesized, verified and delivered by scientists who care about your data.</p>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">Why QELVION</a></li>
+        <li><a href="catalog.html">Research Catalog</a></li>
+        <li><a href="#process">Manufacturing</a></li>
+        <li><a href="#quality">Quality &amp; Certifications</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Research Areas</h4>
+      <ul>
+        <li><a href="#products">Metabolic &amp; Endocrinology</a></li>
+        <li><a href="#products">Regenerative &amp; Recovery</a></li>
+        <li><a href="#products">Dermal &amp; Cosmetic Science</a></li>
+        <li><a href="#products">Longevity &amp; Cellular Health</a></li>
+        <li><a href="#products">Custom Synthesis &amp; Blends</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="foot-contact">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6L22 7"/></svg>
+          <a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+          <span>GMP-aligned facility · Asia–Pacific</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Mon–Sat · replies within 1 business day</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="wrap">
+      <span>© <span id="year">2026</span> QELVION Biotech. All rights reserved.</span>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:.14em">PRECISION · PURITY · PARTNERSHIP</span>
+    </div>
+  </div>
+  <div class="legal">
+    <div class="wrap">
+      <b>Research-use statement.</b> Products and services described on this page are offered for laboratory research and development use only. Nothing on this page is a medicine, dietary supplement, cosmetic, or an offer to diagnose, treat, cure or prevent any disease, and QELVION products are not for human or veterinary use or self-administration. All activities must comply with applicable laws and institutional regulations in your jurisdiction. © 2019–2026 QELVION Biotech.
+    </div>
+  </div>
+</footer>
+  <a class="wa-float" id="waFloat" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="tip">WhatsApp us</span>
+  </a>
+
+<button id="toTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+  var head=document.getElementById("sitehead");
+  var prog=document.getElementById("progress");
+  var toTop=document.getElementById("toTop");
+  var y=document.getElementById("year");
+  if(y){y.textContent=new Date().getFullYear();}
+
+  /* self-service contact info (see assets/site-settings.js) */
+  if(window.QVSITE){
+    var qvEmail=(QVSITE.email||"").trim();
+    if(qvEmail){
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        a.setAttribute("href","mailto:"+qvEmail);
+        var t=a.textContent.trim();
+        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",qvEmail);}
+      });
+    }
+    if(QVSITE.whatsapp){
+      document.querySelectorAll("a[data-qv-contact=whatsapp]").forEach(function(a){
+        a.setAttribute("href","https://wa.me/"+QVSITE.whatsapp.replace(/[^0-9]/g,""));
+      });
+    }
+  }  /* floating WhatsApp button: destination comes from site-settings.js */
+  (function(){
+    var wb=document.getElementById("waFloat");
+    if(!wb)return;
+    var cfg=window.QVSITE||{};
+    var n=String(cfg.whatsapp||"").replace(/[^0-9]/g,"");
+    var msg=(cfg.whatsapp_msg||"").trim();
+    if(n){
+      wb.href="https://wa.me/"+n+(msg?"?text="+encodeURIComponent(msg):"");
+      wb.classList.add("ready");
+      wb.setAttribute("aria-label","Chat with us on WhatsApp");
+    }
+  })();  /* theme toggle (dark / light) */
+  var tt=document.getElementById("themeToggle");
+  function applyTheme(mode){
+    document.documentElement.setAttribute("data-theme",mode);
+    try{localStorage.setItem("qelvion-theme",mode);}catch(e){}
+    if(tt)tt.setAttribute("aria-checked",mode==="light"?"true":"false");
+  }
+  if(tt){
+    var curTheme=document.documentElement.getAttribute("data-theme")==="light"?"light":"dark";
+    tt.setAttribute("aria-checked",curTheme==="light"?"true":"false");
+    tt.addEventListener("click",function(){
+      applyTheme(document.documentElement.getAttribute("data-theme")==="light"?"dark":"light");
+    });
+  }
+
+  /* scroll state: header, progress bar, to-top */
+  function onScroll(){
+    var st=window.scrollY||document.documentElement.scrollTop;
+    head.classList.toggle("scrolled",st>10);
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?(st/h*100):0)+"%";
+    toTop.classList.toggle("show",st>600);
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+  toTop.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+
+  /* mobile menu */
+  var burger=document.getElementById("burger");
+  var mm=document.getElementById("mobileMenu");
+  var mClose=document.getElementById("menuClose");
+  function setMenu(open){
+    mm.classList.toggle("open",open);
+    burger.setAttribute("aria-expanded",open?"true":"false");
+    document.body.style.overflow=open?"hidden":"";
+  }
+  burger.addEventListener("click",function(){setMenu(!mm.classList.contains("open"));});
+  mClose.addEventListener("click",function(){setMenu(false);});
+  mm.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){setMenu(false);});});
+
+  /* active nav link highlighting */
+  var navLinks=document.querySelectorAll("nav.menu a");
+  var secs=document.querySelectorAll("main section[id], main section#home");
+  var spy=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        var id=en.target.id;
+        navLinks.forEach(function(a){a.classList.toggle("active",a.getAttribute("href")==="#"+id);});
+      }
+    });
+  },{rootMargin:"-40% 0px -55% 0px"});
+  secs.forEach(function(s){spy.observe(s);});
+
+  /* reveal on scroll */
+  var rvs=document.querySelectorAll(".rv");
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}
+    });
+  },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+  rvs.forEach(function(el){io.observe(el);});
+
+  /* counters + gauge bars */
+  var counted=false;
+  function fmt(n,suf){return (suf==="+"?n+"+":n);}
+  function runCounters(){
+    if(counted)return; counted=true;
+    var nums=document.querySelectorAll("[data-count]");
+    nums.forEach(function(el){
+      var target=parseInt(el.getAttribute("data-count"),10);
+      var suf=el.getAttribute("data-suf")||"";
+      var dur=1500,start=null;
+      function step(ts){
+        if(!start)start=ts;
+        var p=Math.min((ts-start)/dur,1);
+        var ease=1-Math.pow(1-p,3);
+        el.textContent=fmt(Math.round(target*ease),suf);
+        if(p<1)requestAnimationFrame(step);
+        else el.textContent=fmt(target,suf);
+      }
+      requestAnimationFrame(step);
+    });
+    document.querySelectorAll(".gfill").forEach(function(g){
+      g.style.width=(g.getAttribute("data-w")||0)+"%";
+    });
+  }
+  var statBox=document.querySelector(".stats");
+  if(statBox){
+    var so=new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){runCounters();so.disconnect();}
+    },{threshold:.3});
+    so.observe(statBox);
+  }
+
+  /* quote form (demo handler) */
+  var form=document.getElementById("quoteForm");
+  var ok=document.getElementById("formOk");
+  if(form){
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){form.reportValidity();return;}
+      ok.classList.add("show");
+      ok.scrollIntoView({behavior:"smooth",block:"center"});
+      form.querySelector("button[type=submit]").disabled=true;
+    });
+  }
+  /* branded lyophilized-vial injection */
+  var vialSeq=0;
+  function mgLine(spec){return (spec||"").toUpperCase().replace(" VIALS","");}
+  function vial(name,mg,seq){
+    var short=name;
+    if(short.length>20){short=short.split(" Blend")[0];}
+    var B='<rect x="63" y="169" width="1.3" height="5.5"/><rect x="66" y="169" width="2.1" height="5.5"/><rect x="69.6" y="169" width="1.3" height="5.5"/><rect x="72.4" y="169" width="2.8" height="5.5"/><rect x="76.8" y="169" width="1.5" height="5.5"/><rect x="80" y="169" width="2.3" height="5.5"/><rect x="83.8" y="169" width="1.3" height="5.5"/><rect x="86.6" y="169" width="2.9" height="5.5"/><rect x="91" y="169" width="1.3" height="5.5"/><rect x="93.6" y="169" width="1.9" height="5.5"/><rect x="97" y="169" width="1.3" height="5.5"/><rect x="100" y="169" width="2.5" height="5.5"/><rect x="104" y="169" width="1.4" height="5.5"/><rect x="106.8" y="169" width="1.3" height="5.5"/><rect x="109.6" y="169" width="3" height="5.5"/><rect x="114" y="169" width="1.3" height="5.5"/><rect x="117" y="169" width="2" height="5.5"/><rect x="120.5" y="169" width="1.3" height="5.5"/><rect x="123" y="169" width="1.9" height="5.5"/><rect x="126.4" y="169" width="1.3" height="5.5"/><rect x="129.2" y="169" width="2.4" height="5.5"/><rect x="133" y="169" width="1.5" height="5.5"/><rect x="136" y="169" width="1.3" height="5.5"/>';
+    return '<svg class="vsvg" viewBox="0 0 200 300" role="img" aria-label="'+name+' branded vial">'+
+    '<defs>'+
+    '<linearGradient id="gls'+seq+'" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0A1826"/><stop offset=".22" stop-color="#132A41"/><stop offset=".45" stop-color="#27465F"/><stop offset=".78" stop-color="#12273C"/><stop offset="1" stop-color="#0A1826"/></linearGradient>'+
+    '<linearGradient id="met'+seq+'" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7E8B99"/><stop offset=".25" stop-color="#E9EFF5"/><stop offset=".5" stop-color="#9FACB9"/><stop offset=".75" stop-color="#F5F8FB"/><stop offset="1" stop-color="#626F7D"/></linearGradient>'+
+    '<linearGradient id="cak'+seq+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EEF4F9"/><stop offset="1" stop-color="#D9E4EE"/></linearGradient>'+
+    '<linearGradient id="shn'+seq+'" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".3" stop-color="#FFFFFF" stop-opacity=".02"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>'+
+    '</defs>'+
+    '<rect x="78" y="4" width="44" height="30" rx="5" fill="url(#met'+seq+')"/>'+
+    '<rect x="80" y="6" width="40" height="5" rx="2.5" fill="#FFFFFF" opacity=".5"/>'+
+    '<circle cx="100" cy="19" r="10" fill="url(#met'+seq+')" stroke="#B9C4CF" stroke-width="1"/>'+
+    '<circle cx="100" cy="19" r="6.4" fill="#E6EDF3"/>'+
+    '<circle cx="100" cy="19" r="2.6" fill="#93A4B4"/>'+
+    '<g stroke="#5E6B79" stroke-width="1" opacity=".55"><line x1="84" y1="12" x2="84" y2="31"/><line x1="90" y1="12" x2="90" y2="31"/><line x1="96" y1="12" x2="96" y2="31"/><line x1="104" y1="12" x2="104" y2="31"/><line x1="110" y1="12" x2="110" y2="31"/><line x1="116" y1="12" x2="116" y2="31"/></g>'+
+    '<path d="M82 34 H118 V44 C122 52 132 56 150 62 C156 64 160 68 160 74 V254 C160 264 152 270 142 270 H58 C48 270 40 264 40 254 V74 C40 68 44 64 50 62 C68 56 78 52 82 44 Z" fill="url(#gls'+seq+')" stroke="rgba(170,205,235,.5)" stroke-width="1.4"/>'+
+    '<rect x="78" y="31" width="44" height="6" rx="2" fill="#0F2338"/>'+
+    '<rect x="50" y="206" width="100" height="58" rx="15" fill="url(#cak'+seq+')"/>'+
+    '<path d="M50 220 Q100 202 150 220" fill="none" stroke="#FFFFFF" stroke-width="2.2" opacity=".95"/>'+
+    '<g stroke="#CBD7E2" stroke-width="1.1" opacity=".6" fill="none"><path d="M82 238 q7 6 14 0"/><path d="M106 250 q7 6 14 0"/><path d="M66 252 q5 4 10 0"/><path d="M124 240 q4 4 8 0"/></g>'+
+    '<rect x="52" y="234" width="7" height="24" rx="3.5" fill="#FFFFFF" opacity=".5"/>'+
+    '<rect x="45" y="76" width="12" height="166" rx="6" fill="#FFFFFF" opacity=".16"/>'+
+    '<rect x="147" y="82" width="4" height="148" rx="2" fill="#FFFFFF" opacity=".09"/>'+
+    '<rect x="52" y="104" width="96" height="78" rx="7" fill="#F7FBFE" stroke="#CFDDE9" stroke-width="1"/>'+
+    '<rect x="52" y="104" width="96" height="78" rx="7" fill="url(#shn'+seq+')" opacity=".45"/>'+
+    '<path d="M61 115 l5 2.9 v5.7 l-5 2.9 -5 -2.9 v-5.7 Z" fill="none" stroke="#0E9F86" stroke-width="1.4"/>'+
+    '<circle cx="61" cy="120.5" r="1.5" fill="#0E9F86"/>'+
+    '<text x="70" y="122.5" font-family="Sora,Arial,sans-serif" font-weight="800" font-size="9" fill="#0B2333">QELVION</text>'+
+    '<rect x="58" y="131" width="84" height="1.1" fill="#BFD6E6"/>'+
+    '<text x="100" y="151" text-anchor="middle" font-family="Sora,Arial,sans-serif" font-weight="800" font-size="13" fill="#0B2333" textLength="88" lengthAdjust="spacingAndGlyphs">'+short+'</text>'+
+    '<text x="100" y="160.5" text-anchor="middle" font-family="Courier New,monospace" font-size="5.2" letter-spacing=".9" fill="#3E6E84">'+mg+'</text>'+
+    '<rect x="60" y="168" width="80" height="7.5" rx="2" fill="#0B2333"/>'+
+    '<g fill="#F7FBFE">'+B+'</g>'+
+    '</svg>';
+  }
+  var IMGMAP={"MOTS-c":"vial-mots-c.png","BPC-157":"vial-bpc-157.png","GHK-Cu":"vial-ghk-cu.png","NAD+":"vial-nad-plus.png","GLOW Blend":"vial-glow.png","Custom Synthesis":"vial-custom-synthesis.png"};
+  var ASSETV="20260509b";
+  function attachPhoto(el,src){
+    if(!el||!src)return;
+    var s=src+"?v="+ASSETV;
+    var im=new Image();
+    im.onload=function(){
+      var img=document.createElement("img");
+      img.className="pimg"; img.alt=""; img.src=s;
+      el.innerHTML="";
+      el.appendChild(img);
+      el.classList.add("has-photo");
+    };
+    im.src=s;
+  }  var heroWrap=document.getElementById("heroVial");
+  if(heroWrap){heroWrap.innerHTML=vial("BPC-157","5 MG","hv");}
+  if(heroWrap){attachPhoto(heroWrap,'assets/products/vial-bpc-157.png');}
+  var showcase=[["MOTS-c","20 MG"],["BPC-157","5 MG"],["GHK-Cu","50 MG"],["NAD+","500 MG"],["Custom Synthesis","MG → KG"],["GLOW Blend","70 MG"]];
+  var pcards=document.querySelectorAll("#products .prod-card");
+  for(var vi=0; vi<pcards.length && vi<showcase.length; vi++){
+    var sh=document.createElement("div");
+    sh.className="pshot";
+    sh.innerHTML=vial(showcase[vi][0],showcase[vi][1],"pc"+vi);
+    pcards[vi].insertBefore(sh,pcards[vi].firstChild);
+    attachPhoto(sh,'assets/products/'+(IMGMAP[showcase[vi][0]]||''));
+  }
+})();
+</script>
+</body>
+</html>

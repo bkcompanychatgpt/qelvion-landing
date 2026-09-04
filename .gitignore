@@ -1,0 +1,7 @@
+# QELVION-landing · files NOT needed on the live site
+_qa/
+_reference/
+assets/products/_refs/
+~$*.xlsx
+*.tmp
+Thumbs.db

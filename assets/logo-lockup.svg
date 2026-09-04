@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 128" role="img" aria-label="QELVION Biotech">
+  <defs>
+    <linearGradient id="qg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0FB9E6"/>
+      <stop offset=".55" stop-color="#14A9D6"/>
+      <stop offset="1" stop-color="#0E9F86"/>
+    </linearGradient>
+  </defs>
+
+  <!-- emblem (compact, dark-toned for light backgrounds) -->
+  <g transform="translate(8 14) scale(0.92)">
+    <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z"
+          fill="none" stroke="#E4F4FB" stroke-width="11" stroke-linejoin="round"/>
+    <path d="M100 22 L164.6 61 L164.6 139 L100 178 L35.4 139 L35.4 61 Z"
+          fill="none" stroke="url(#qg2)" stroke-width="7.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M100 54 C 66 76, 66 124, 100 146" fill="none" stroke="#0B6E8C" stroke-width="3.6" stroke-linecap="round" opacity=".55"/>
+    <path d="M100 54 C 134 76, 134 124, 100 146" fill="none" stroke="url(#qg2)" stroke-width="6.2" stroke-linecap="round"/>
+    <path d="M164.6 130 C 186 128, 194 148, 180 168" fill="none" stroke="url(#qg2)" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="100" cy="100" r="10.5" fill="url(#qg2)"/>
+    <circle cx="100" cy="100" r="4" fill="#FFFFFF"/>
+    <circle cx="180" cy="168" r="5.5" fill="url(#qg2)"/>
+  </g>
+
+  <g font-family="Sora, 'Avenir Next', 'Segoe UI', Helvetica, Arial, sans-serif">
+    <text x="128" y="66" font-size="54" font-weight="800" letter-spacing="3" fill="#0A1826">QELVION</text>
+    <rect x="129" y="84" width="52" height="3.5" rx="1.75" fill="#0E9F86"/>
+    <text x="129" y="106" font-size="16.5" font-weight="700" letter-spacing="11.5" fill="#3E6E84">BIOTECH</text>
+  </g>
+</svg>
