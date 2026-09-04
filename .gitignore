@@ -2,6 +2,10 @@
 _qa/
 _reference/
 assets/products/_refs/
+_browser-profile/
 ~$*.xlsx
 *.tmp
 Thumbs.db
+
+_browser/
+
