@@ -16,7 +16,7 @@ window.QVSITE = {
   /* WhatsApp 号码（国际格式，只填数字和 +，如 +8613800138000）。
      留空 "" 表示悬浮按钮暂时指向 wa.me 首页；
      填上后，右下角悬浮 WhatsApp 按钮将自动跳到该号码。 */
-  whatsapp: "",
+  whatsapp: "+85259241150",
 
   /* 点击悬浮按钮后自动附带的默认问候语（可留空） */
   whatsapp_msg: "Hi QELVION Biotech, I'd like to ask about your products."
