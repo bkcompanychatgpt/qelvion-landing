@@ -293,6 +293,7 @@ $("btnSaveText").onclick=async()=>{
     TEXT_ORDER.forEach(([key])=>{ const v=$("tf_"+key); if(v) out[key]=v.value; });
     let prev={}; if(contentData) prev=contentData; else { try{ prev=JSON.parse((await readRepoFile("assets/content.json")).content); }catch(e){} }
     const merged=Object.assign({},prev,out);
+    merged.assetsVersion=String(Date.now());
     await writeRepoFile("assets/content.json",JSON.stringify(merged,null,2)+"\n","update homepage texts");
     toast("Homepage texts saved — live site updates in 1-2 min ✔");
   }catch(e){ toast("Save failed: "+e.message,true); }
@@ -332,6 +333,7 @@ function buildImages(){
         const b64=bytesToB64(new Uint8Array(data));
         const cur=await gh("GET","/repos/"+OWNER_REPO+"/contents/assets/products/"+name+"?ref=main");
         await gh("PUT","/repos/"+OWNER_REPO+"/contents/assets/products/"+name,{message:"Admin: replace image "+name,content:b64,sha:cur.sha,branch:"main"});
+        try{ const cf=await readRepoFile("assets/content.json"); const cj=JSON.parse(cf.content); cj.assetsVersion=String(Date.now()); await writeRepoFile("assets/content.json",JSON.stringify(cj,null,2)+"\n","bump asset version"); }catch(e){}
         st.textContent="saved ✔ (1-2 min to go live)"; st.style.color="var(--ok)";
         img.src="assets/products/"+name+"?v="+Date.now();
       }catch(e){ st.textContent=e.message; st.style.color="var(--err)"; }

@@ -18,7 +18,37 @@ window.__QTHEME_DEFAULT='light';
   document.documentElement.setAttribute('data-theme',t);
 })();
 </script>
-<script src="assets/site-settings.js"></script>
+<script>
+/* live settings + asset version loader (cache-proof) */
+(function(){
+  window.__QVREADY = fetch("assets/content.json?v="+Date.now())
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(c){ if(c&&c.assetsVersion) window.__QVV=c.assetsVersion; return c; })
+    .catch(function(){ return null; });
+  function apply(){
+    var Q=window.QVSITE; if(!Q) return;
+    var e=(Q.email||"").trim();
+    if(e){
+      document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        a.setAttribute("href","mailto:"+e);
+        var t=a.textContent.trim();
+        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",e);}
+      });
+    }
+    var wb=document.getElementById("waFloat");
+    if(wb){
+      var n=String(Q.whatsapp||"").replace(/[^0-9]/g,"");
+      var m=(Q.whatsapp_msg||"").trim();
+      wb.href = n ? ("https://wa.me/"+n+(m?("?text="+encodeURIComponent(m)):"")) : "https://wa.me/";
+      if(n){ wb.classList.add("ready"); wb.setAttribute("aria-label","Chat with us on WhatsApp"); }
+    }
+  }
+  var s=document.createElement("script");
+  s.src="assets/site-settings.js?v="+Date.now();
+  s.onload=function(){ apply(); setTimeout(apply,1200); };
+  document.head.appendChild(s);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1267,7 +1297,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   var ASSETV="20260509b";
   function attachPhoto(el,src){
     if(!el||!src)return;
-    var s=src+"?v="+ASSETV;
+    var s=src+"?v="+(window.__QVV||ASSETV);
     var im=new Image();
     im.onload=function(){
       var img=document.createElement("img");
@@ -1277,7 +1307,8 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       el.classList.add("has-photo");
     };
     im.src=s;
-  }  var heroWrap=document.getElementById("heroVial");
+  }  function buildVials(){
+  var heroWrap=document.getElementById("heroVial");
   if(heroWrap){heroWrap.innerHTML=vial("BPC-157","5 MG","hv");}
   if(heroWrap){attachPhoto(heroWrap,'assets/products/vial-bpc-157.png');}
   var showcase=[["MOTS-c","20 MG"],["BPC-157","5 MG"],["GHK-Cu","50 MG"],["NAD+","500 MG"],["Custom Synthesis","MG → KG"],["GLOW Blend","70 MG"]];
@@ -1287,6 +1318,8 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     sh.className="pshot";
     sh.innerHTML=vial(showcase[vi][0],showcase[vi][1],"pc"+vi);
     pcards[vi].insertBefore(sh,pcards[vi].firstChild);
+  }
+  (window.__QVREADY||Promise.resolve()).then(buildVials);
     attachPhoto(sh,'assets/products/'+(IMGMAP[showcase[vi][0]]||''));
   }
 })();
