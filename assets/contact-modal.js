@@ -139,12 +139,24 @@
         wa.href = link;
         wa.setAttribute("aria-label", (person ? ("Chat with " + person.name) : "Chat with QELVION Biotech") + " on WhatsApp");
       }
-      /* site-wide email buttons → main company email */
+      /* 邮箱按钮：
+         · 员工个人页（/steven 这类）→ 页面上所有邮箱都换成**这个销售**的（文案 + 收件地址）
+         · 公司页 → 统一成公司主邮箱（原来写的是已停用的 quote@ 占位地址）
+         ★ 2026-09-20 修：以前这里只认 quote@ 占位地址，于是个人页上出现
+           "显示 salesqelvion@gmail.com、点下去收件人却是公司邮箱"（真浏览器验收抓到的）。 */
+      var OLD_MAIL = /quote@qelvionbiotech\.com/i;
+      var toEmail = person ? person.email : data.main.email;
       document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+        var href = a.getAttribute("href") || "";
         var t = a.textContent.trim();
-        if (/quote@qelvionbiotech\.com/i.test(a.getAttribute("href") || t)) {
-          a.setAttribute("href", "mailto:" + data.main.email);
-          if (/quote@qelvionbiotech\.com/i.test(t)) a.textContent = t.replace(/quote@qelvionbiotech\.com/gi, data.main.email);
+        if (person) {
+          a.setAttribute("href", "mailto:" + person.email);
+          if (t.indexOf("@") !== -1 && t.indexOf(person.email) === -1) a.textContent = person.email;
+          return;
+        }
+        if (OLD_MAIL.test(href) || OLD_MAIL.test(t)) {
+          a.setAttribute("href", "mailto:" + toEmail);
+          if (OLD_MAIL.test(t)) a.textContent = t.replace(/quote@qelvionbiotech\.com/gi, toEmail);
         }
       });
 

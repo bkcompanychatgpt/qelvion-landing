@@ -31,10 +31,16 @@ window.__QTHEME_DEFAULT='light';
     var Q=window.QVSITE; if(!Q) return;
     var e=(Q.email||"").trim();
     if(e){
+      var OLD_MAIL="quote@qelvionbiotech.com";
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        var href=a.getAttribute("href")||"", t=a.textContent.trim();
+        /* ★ 只改"还挂着旧占位地址"的链接。
+           以前这里**无条件**覆盖 → 员工个人页显示本人邮箱、点下去却发给公司邮箱；
+           而且这个 apply() 在 1.2 秒后还会再跑一次，会盖掉
+           assets/contact-modal.js 设好的个人邮箱（真浏览器验收抓到的）。 */
+        if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
         a.setAttribute("href","mailto:"+e);
-        var t=a.textContent.trim();
-        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",e);}
+        if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,e);}
       });
     }
     var wb=document.getElementById("waFloat");
@@ -1168,10 +1174,16 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   if(window.QVSITE){
     var qvEmail=(QVSITE.email||"").trim();
     if(qvEmail){
+      var OLD_MAIL="quote@qelvionbiotech.com";
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        var href=a.getAttribute("href")||"", t=a.textContent.trim();
+        /* ★ 只改"还挂着旧占位地址"的那些链接。
+           以前这里**无条件**把 href 改成公司邮箱 → 员工个人页上显示的是
+           salesqelvion@gmail.com，点下去收件人却是公司邮箱（真浏览器验收抓到的）。
+           个人页的邮箱由 assets/contact-modal.js 按 qv-sales 设成本人的。 */
+        if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
         a.setAttribute("href","mailto:"+qvEmail);
-        var t=a.textContent.trim();
-        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",qvEmail);}
+        if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,qvEmail);}
       });
     }
     if(QVSITE.whatsapp){

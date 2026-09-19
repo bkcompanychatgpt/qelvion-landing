@@ -34,10 +34,16 @@ window.__QTHEME_DEFAULT='dark';
     var Q=window.QVSITE; if(!Q) return;
     var e=(Q.email||"").trim();
     if(e){
+      var OLD_MAIL="quote@qelvionbiotech.com";
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        var href=a.getAttribute("href")||"", t=a.textContent.trim();
+        /* ★ 只改"还挂着旧占位地址"的链接。
+           以前这里**无条件**覆盖 → 员工个人页显示本人邮箱、点下去却发给公司邮箱；
+           而且这个 apply() 在 1.2 秒后还会再跑一次，会盖掉
+           assets/contact-modal.js 设好的个人邮箱（真浏览器验收抓到的）。 */
+        if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
         a.setAttribute("href","mailto:"+e);
-        var t=a.textContent.trim();
-        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",e);}
+        if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,e);}
       });
     }
     var wb=document.getElementById("waFloat");
@@ -569,16 +575,16 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       "logo": "https://qelvionbiotech.com/assets/logo-mark.png",
       "image": "https://qelvionbiotech.com/assets/logo-lockup-dark.png",
       "description": "QELVION Biotech is a research-grade peptide manufacturer and CDMO partner: HPLC-verified purity, batch-level COA, custom synthesis, lyophilized vials and global cold-chain supply for research institutions, biotech R&D teams and licensed distributors.",
-      "email": "quote@qelvionbiotech.com",
+      "email": "QelvionBiotech@gmail.com",
       "foundingDate": "2019",
       "areaServed": "Worldwide",
       "knowsAbout": ["peptide synthesis","lyophilized peptides","research peptides","custom peptide synthesis","GMP peptide manufacturing","certificate of analysis"],
       "contactPoint": [{
         "@type": "ContactPoint",
         "contactType": "sales",
-        "email": "quote@qelvionbiotech.com",
-        "telephone": "+852-4417-6374",
-        "url": "https://wa.me/85244176374",
+        "email": "salesqelvion5@gmail.com",
+        "telephone": "+852-9267-5254",
+        "url": "https://wa.me/85292675254",
         "availableLanguage": ["en","zh"],
         "areaServed": "Worldwide"
       }]
@@ -604,7 +610,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   <div class="wrap">
     <div><span class="tb-dot">●</span>&nbsp; HPLC-verified purity ≥99% &nbsp;·&nbsp; COA on every batch &nbsp;·&nbsp; Global research-grade supply</div>
     <div class="tb-right">
-      <a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a>
+      <a href="mailto:salesqelvion5@gmail.com">salesqelvion5@gmail.com</a>
       <span style="opacity:.35">|</span>
       <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Switch between dark and light theme">
         <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/></svg>
@@ -1013,7 +1019,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <div class="info-list">
         <div class="info-item">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6L22 7"/></svg>
-          <div><b>Email</b><a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a></div>
+          <div><b>Email</b><a href="mailto:salesqelvion5@gmail.com">salesqelvion5@gmail.com</a></div>
         </div>
         <div class="info-item">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
@@ -1119,7 +1125,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <ul class="foot-contact">
         <li>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6L22 7"/></svg>
-          <a href="mailto:quote@qelvionbiotech.com">quote@qelvionbiotech.com</a>
+          <a href="mailto:salesqelvion5@gmail.com">salesqelvion5@gmail.com</a>
         </li>
         <li>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4DE1FF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
@@ -1171,10 +1177,16 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   if(window.QVSITE){
     var qvEmail=(QVSITE.email||"").trim();
     if(qvEmail){
+      var OLD_MAIL="quote@qelvionbiotech.com";
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
+        var href=a.getAttribute("href")||"", t=a.textContent.trim();
+        /* ★ 只改"还挂着旧占位地址"的那些链接。
+           以前这里**无条件**把 href 改成公司邮箱 → 员工个人页上显示的是
+           salesqelvion@gmail.com，点下去收件人却是公司邮箱（真浏览器验收抓到的）。
+           个人页的邮箱由 assets/contact-modal.js 按 qv-sales 设成本人的。 */
+        if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
         a.setAttribute("href","mailto:"+qvEmail);
-        var t=a.textContent.trim();
-        if(t.indexOf("quote@qelvionbiotech.com")!==-1){a.textContent=t.replace("quote@qelvionbiotech.com",qvEmail);}
+        if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,qvEmail);}
       });
     }
     if(QVSITE.whatsapp){
