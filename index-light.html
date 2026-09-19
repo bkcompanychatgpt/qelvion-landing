@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QELVION Biotech — Research-Grade Peptide Manufacturing &amp; CDMO Partner</title>
+<meta name="google-site-verification" content="p9_jwIzaceiTknmiU2VkoZjLsjhx4XSirlUAiOb_tHM">
+<link rel="canonical" href="https://qelvionbiotech.com/">
 <meta name="description" content="QELVION Biotech is a research-grade peptide manufacturer and CDMO partner: HPLC-verified purity, batch-level COA, custom &amp; bulk synthesis, lyophilized vials, global cold-chain supply for research institutions and licensed distributors.">
 <meta property="og:title" content="QELVION Biotech — Precision Peptide Manufacturing">
 <meta property="og:description" content="Research-grade peptides, custom synthesis and private-label manufacturing with COA on every batch.">
@@ -39,7 +41,7 @@ window.__QTHEME_DEFAULT='light';
     if(wb){
       var n=String(Q.whatsapp||"").replace(/[^0-9]/g,"");
       var m=(Q.whatsapp_msg||"").trim();
-      wb.href = n ? ("https://wa.me/"+n+(m?("?text="+encodeURIComponent(m)):"")) : "https://wa.me/";
+      if(!wb.dataset.qvSet){ wb.href = n ? ("https://wa.me/"+n+(m?("?text="+encodeURIComponent(m)):"")) : "https://wa.me/"; }
       if(n){ wb.classList.add("ready"); wb.setAttribute("aria-label","Chat with us on WhatsApp"); }
     }
   }
@@ -551,6 +553,44 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   .wa-float .tip{display:none}
 }
 @media (prefers-reduced-motion:reduce){.wa-float,.wa-float::after{animation:none}}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://qelvionbiotech.com/#organization",
+      "name": "QELVION Biotech",
+      "alternateName": "QELVION",
+      "url": "https://qelvionbiotech.com/",
+      "logo": "https://qelvionbiotech.com/assets/logo-mark.png",
+      "image": "https://qelvionbiotech.com/assets/logo-lockup-dark.png",
+      "description": "QELVION Biotech is a research-grade peptide manufacturer and CDMO partner: HPLC-verified purity, batch-level COA, custom synthesis, lyophilized vials and global cold-chain supply for research institutions, biotech R&D teams and licensed distributors.",
+      "email": "quote@qelvionbiotech.com",
+      "foundingDate": "2019",
+      "areaServed": "Worldwide",
+      "knowsAbout": ["peptide synthesis","lyophilized peptides","research peptides","custom peptide synthesis","GMP peptide manufacturing","certificate of analysis"],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "quote@qelvionbiotech.com",
+        "telephone": "+852-4417-6374",
+        "url": "https://wa.me/85244176374",
+        "availableLanguage": ["en","zh"],
+        "areaServed": "Worldwide"
+      }]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://qelvionbiotech.com/#website",
+      "url": "https://qelvionbiotech.com/",
+      "name": "QELVION Biotech",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://qelvionbiotech.com/#organization" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -1045,13 +1085,17 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
         </svg>
         <span><span class="brand-name">QELVION</span><div class="brand-sub">BIOTECH</div></span>
       </a>
-      <p>Research-grade peptide manufacturing and CDMO partnership — synthesized, verified and delivered by scientists who care about your data.</p>
+      <p>Research-grade peptide manufacturing and CDMO partnership — synthesized, verified and delivered by scientists who care about your data.
+      <p style="margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--dim)">Established 2019 · GMP-aligned facility · Asia–Pacific · 35+ countries served</p></p>
     </div>
     <div>
       <h4>Company</h4>
       <ul>
         <li><a href="#about">Why QELVION</a></li>
         <li><a href="catalog.html">Research Catalog</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
         <li><a href="#process">Manufacturing</a></li>
         <li><a href="#quality">Quality &amp; Certifications</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -1324,5 +1368,6 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   }
 })();
 </script>
+  <script src="assets/contact-modal.js"></script>
 </body>
 </html>
