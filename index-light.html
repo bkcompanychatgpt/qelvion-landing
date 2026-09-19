@@ -1352,20 +1352,20 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     };
     im.src=s;
   }  function buildVials(){
-  var heroWrap=document.getElementById("heroVial");
-  if(heroWrap){heroWrap.innerHTML=vial("BPC-157","5 MG","hv");}
-  if(heroWrap){attachPhoto(heroWrap,'assets/products/vial-bpc-157.png');}
-  var showcase=[["MOTS-c","20 MG"],["BPC-157","5 MG"],["GHK-Cu","50 MG"],["NAD+","500 MG"],["Custom Synthesis","MG → KG"],["GLOW Blend","70 MG"]];
-  var pcards=document.querySelectorAll("#products .prod-card");
-  for(var vi=0; vi<pcards.length && vi<showcase.length; vi++){
-    var sh=document.createElement("div");
-    sh.className="pshot";
-    sh.innerHTML=vial(showcase[vi][0],showcase[vi][1],"pc"+vi);
-    pcards[vi].insertBefore(sh,pcards[vi].firstChild);
+    var heroWrap=document.getElementById("heroVial");
+    if(heroWrap){heroWrap.innerHTML=vial("BPC-157","5 MG","hv");}
+    if(heroWrap){attachPhoto(heroWrap,"assets/products/vial-bpc-157.png");}
+    var showcase=[["MOTS-c","20 MG"],["BPC-157","5 MG"],["GHK-Cu","50 MG"],["NAD+","500 MG"],["Custom Synthesis","MG → KG"],["GLOW Blend","70 MG"]];
+    var pcards=document.querySelectorAll("#products .prod-card");
+    for(var vi=0; vi<pcards.length && vi<showcase.length; vi++){
+      var sh=document.createElement("div");
+      sh.className="pshot";
+      sh.innerHTML=vial(showcase[vi][0],showcase[vi][1],"pc"+vi);
+      pcards[vi].insertBefore(sh,pcards[vi].firstChild);
+      attachPhoto(sh,"assets/products/"+(IMGMAP[showcase[vi][0]]||""));
+    }
   }
   (window.__QVREADY||Promise.resolve()).then(buildVials);
-    attachPhoto(sh,'assets/products/'+(IMGMAP[showcase[vi][0]]||''));
-  }
 })();
 </script>
   <script src="assets/contact-modal.js"></script>
