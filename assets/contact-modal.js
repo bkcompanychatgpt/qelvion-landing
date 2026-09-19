@@ -74,7 +74,7 @@
 
   function salesRow(p, highlight) {
     return '<div class="qv-row' + (highlight ? " person" : "") + '">' +
-      '<div class="qv-who"><b>' + esc(p.name) + (highlight ? ' <span style="font-size:11px;color:#23D6A4">· your contact</span>' : "") + '</b>' +
+      '<div class="qv-who"><b>' + esc(p.name) + '</b>' +
       '<span>' + esc(p.email) + '</span><span>WhatsApp ' + esc(p.whatsappDisplay) + '</span></div>' +
       '<div class="qv-btns">' +
       '<a class="qv-btn mail" href="mailto:' + esc(p.email) + '">✉ Email</a>' +
