@@ -1383,6 +1383,13 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   (window.__QVREADY||Promise.resolve()).then(buildVials);
 })();
 </script>
-  <script src="assets/contact-modal.js"></script>
+  <script>
+  /* cache-proof loader: always fetch the newest contact popup script */
+  (function(){
+    var s=document.createElement("script");
+    s.src="assets/contact-modal.js?v="+Date.now();
+    document.head.appendChild(s);
+  })();
+  </script>
 </body>
 </html>
