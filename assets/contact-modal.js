@@ -84,8 +84,8 @@
     ".qv-btn.mail:hover{border-color:#4DE1FF}",
     ".qv-btn.wa{background:linear-gradient(145deg,#2BE06F,#1EBE5D);color:#03130A}",
     ".qv-btn.wa:hover{filter:brightness(1.06)}",
-    ".qv-foot{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}",
-    ".qv-ok{background:linear-gradient(100deg,#4DE1FF,#23D6A4);color:#02101C;border:none;border-radius:12px;padding:12px 26px;",
+    ".qv-foot{margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}",
+    ".qv-ok{background:linear-gradient(100deg,#4DE1FF,#23D6A4);color:#02101C;border:none;border-radius:12px;padding:14px 44px;",
     "font-family:var(--sora,'Sora',sans-serif);font-weight:700;font-size:14.5px;cursor:pointer}",
     ".qv-note{font-size:11px;color:#6E85A6;line-height:1.6;max-width:34ch}",
     ".qv-x{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:10px;border:1px solid rgba(147,179,231,.3);",
@@ -196,7 +196,7 @@
       html += '<div class="qv-sec"><h4>Sales team</h4>' + data.sales.map(function (p) { return salesRow(p, false); }).join("") + '</div>';
     }
     html += '<div class="qv-foot"><button class="qv-ok">Continue to website</button>' +
-      '<div class="qv-note">Products are for laboratory research &amp; development use only — not for human or veterinary use.</div></div></div>';
+      '</div></div>';
     ov.innerHTML = html;
     document.body.appendChild(ov);
     return ov;
