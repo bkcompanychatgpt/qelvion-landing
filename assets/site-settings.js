@@ -11,7 +11,7 @@
    ============================================================ */
 window.QVSITE = {
   /* 显示在页面上的邮箱（顶部栏/联系区/页脚/报价按钮邮件） */
-  email: "QelvionBiotech@gmail.com",
+  email: "main@qelvionbiotech.com",
 
   /* WhatsApp 号码（国际格式，只填数字和 +，如 +8613800138000）。
      留空 "" 表示悬浮按钮暂时指向 wa.me 首页；

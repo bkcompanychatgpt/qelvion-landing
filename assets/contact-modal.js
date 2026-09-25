@@ -131,7 +131,10 @@
       document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
         var href = a.getAttribute("href") || "";
         var addr = href.replace(/^mailto:/i, "").split("?")[0];
-        if (/quote@qelvionbiotech\.com/i.test(addr) || (person && /qelvionbiotech@gmail\.com|salesqelvion\d*@/i.test(addr))) {
+        var mainAddr = String(data.main.email || "").toLowerCase();
+        var isCompanyAddr = (addr.toLowerCase() === mainAddr) ||
+          /quote@qelvionbiotech\.com|qelvionbiotech@gmail\.com|main@qelvionbiotech\.com|salesqelvion\d*@/i.test(addr);
+        if (isCompanyAddr) {
           if (addr.toLowerCase() !== target.toLowerCase()) {
             a.setAttribute("href", href.replace(addr, target));
             var t = (a.textContent || "").trim();
