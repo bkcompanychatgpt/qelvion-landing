@@ -105,7 +105,7 @@ footer a:hover{color:var(--txt)}
       <span><b>QELVION</b><small>BIOTECH</small></span>
     </a>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" data-qv="nav_home">Home</a>
       <a href="catalog.html">Catalog</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="on">Contact</a>
@@ -137,8 +137,8 @@ footer a:hover{color:var(--txt)}
       <li>Delivery country, so we can quote shipping and lead time</li>
     </ul>
     <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-      <a class="btn btn-p" href="https://wa.me/85244176374" data-wa-link target="_blank" rel="noopener">Chat on WhatsApp</a>
-      <a class="btn btn-g" href="mailto:main@qelvionbiotech.com">Send an email</a>
+      <a class="btn btn-p" href="https://qelvionbiotech.wasap.my/" data-qv="contact_btn_whatsapp" data-wa-link target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a class="btn btn-g" href="mailto:QelvionBiotech@gmail.com" data-qv="contact_btn_email">Send an email</a>
     </div>
   </div>
   <div>
@@ -165,7 +165,7 @@ footer a:hover{color:var(--txt)}
         <p style="color:var(--mut);font-size:13.5px;margin-top:14px;max-width:34ch">Research-grade peptide manufacturing &amp; CDMO partnership. Established 2019 · Asia–Pacific.</p>
       </div>
       <div><h4>Company</h4><ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" data-qv="nav_home">Home</a></li>
         <li><a href="about.html">About us</a></li>
         <li><a href="catalog.html">Research catalog</a></li>
         <li><a href="contact.html" class="on">Contact</a></li>
@@ -195,6 +195,9 @@ footer a:hover{color:var(--txt)}
     s.src="assets/contact-modal.js?v="+Date.now();
     document.head.appendChild(s);
   })();
+  </script>
+  <script>
+  (function(){var s=document.createElement("script");s.src="assets/link-slots.js?v="+Date.now();document.head.appendChild(s);})();
   </script>
 </body>
 </html>

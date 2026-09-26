@@ -105,7 +105,7 @@
 
   /* ---------------- apply the assignment to the page ---------------- */
   function applyIdentity(data, person) {
-    var link = person ? person.whatsappLink : data.main.whatsappLink;
+    var link = person ? person.whatsappLink : ((window.QVLinks && window.QVLinks.float_whatsapp) || data.main.whatsappLink);
 
     /* 1) floating WhatsApp button (guard stops the settings loader
           from overwriting it back to the company number) */

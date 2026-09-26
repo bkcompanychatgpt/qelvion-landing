@@ -1,0 +1,23 @@
+{
+  "nav_home": "index.html",
+  "nav_catalog": "catalog.html",
+  "nav_about": "about.html",
+  "nav_contact": "contact.html",
+  "nav_products": "index.html#products",
+  "nav_faq": "index.html#faq",
+  "header_cta": "index.html#contact",
+  "hero_cta_primary": "#contact",
+  "hero_cta_secondary": "#products",
+  "products_browse_catalog": "catalog.html",
+  "products_talk_team": "#contact",
+  "footer_home": "index.html",
+  "footer_about": "about.html",
+  "footer_contact": "contact.html",
+  "footer_privacy": "privacy.html",
+  "footer_catalog": "catalog.html",
+  "catalog_cta_final": "index.html#contact",
+  "contact_btn_whatsapp": "https://qelvionbiotech.wasap.my/",
+  "contact_btn_email": "mailto:QelvionBiotech@gmail.com",
+  "product_quote_target": "mailto:QelvionBiotech@gmail.com",
+  "float_whatsapp": "https://qelvionbiotech.wasap.my/"
+}

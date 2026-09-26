@@ -84,6 +84,8 @@ input[type=file]{color:var(--mut);font-size:13px}
     <button class="tab on" data-panel="tabContact">① Contact / WhatsApp</button>
     <button class="tab" data-panel="tabText">② Homepage texts</button>
     <button class="tab" data-panel="tabImages">③ Product images</button>
+    <button class="tab" data-panel="tabLinks">④ Buttons &amp; links</button>
+    <button class="tab" data-panel="tabBrand">⑤ Hero &amp; proof images</button>
     <button class="tab" data-panel="tabGuide">Help</button>
   </div>
 
@@ -122,6 +124,40 @@ input[type=file]{color:var(--mut);font-size:13px}
     </div>
   </div>
 
+  <!-- buttons & links -->
+  <div class="panel" id="tabLinks">
+    <div class="card">
+      <h2>Buttons &amp; links <span class="badge">assets/site-links.json</span></h2>
+      <p class="sub">Change where every button on the site points to. Leave a field empty to fall back to the built-in default (shown in grey).</p>
+      <div id="linkFields"></div>
+      <div class="row" style="margin-top:18px">
+        <button class="btn btn-p" id="btnSaveLinks">Save buttons &amp; links</button>
+        <button class="btn btn-g" id="btnResetLinks">Reset all to default</button>
+        <span class="note">保存后 1-2 分钟网站自动更新</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- hero + proof images (inside the images tab) -->
+  <div class="panel" id="tabBrand">
+    <div class="card">
+      <h2>Hero photo <span class="badge">assets/content.json</span></h2>
+      <p class="sub">Which product bottle photo is shown as the big hero image on the homepage.</p>
+      <label>Hero photo</label>
+      <select id="heroSelect"></select>
+      <div class="row" style="margin-top:12px"><button class="btn btn-g" id="btnSaveHero">Save hero photo</button><span class="note" id="heroNote"></span></div>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <h2>Proof / gallery images <span class="badge">assets/proof/</span></h2>
+      <p class="sub">Upload packing photos, delivery confirmations, COA scans — then they can be used in the Proof section.</p>
+      <div class="row">
+        <input type="text" id="proofName" placeholder="file name, e.g. packing-01.jpg" style="max-width:280px">
+        <input type="file" id="proofFile" accept="image/*">
+        <button class="btn btn-g" id="btnProofUpload">Upload</button>
+      </div>
+      <div id="proofList" style="margin-top:14px"></div>
+    </div>
+  </div>
   <!-- guide -->
   <div class="panel" id="tabGuide">
     <div class="card">
@@ -356,6 +392,146 @@ $("imgSearch").oninput=()=>{
   const q=$("imgSearch").value.toLowerCase();
   document.querySelectorAll("#imgList .prod").forEach(r=>r.style.display=r.dataset.name.includes(q)?"flex":"none");
 };
+
+/* ================= buttons & links ================= */
+const LINK_LABELS=[
+ ["hero_cta_primary","Homepage hero — main button"],
+ ["hero_cta_secondary","Homepage hero — second button"],
+ ["header_cta","Header — “Request a Quote” button"],
+ ["products_browse_catalog","Homepage — “Browse the full product catalog” link"],
+ ["products_talk_team","Homepage products — “Talk to our team” link"],
+ ["nav_home","Menu — Home"],
+ ["nav_catalog","Menu — Catalog"],
+ ["nav_about","Menu — About"],
+ ["nav_contact","Menu — Contact"],
+ ["footer_home","Footer — Home"],
+ ["footer_about","Footer — About us"],
+ ["footer_contact","Footer — Contact"],
+ ["footer_privacy","Footer — Privacy policy"],
+ ["footer_catalog","Footer — Research catalog"],
+ ["catalog_cta_final","Catalog page — bottom “Request Full Catalog” button"],
+ ["contact_btn_whatsapp","Contact page — WhatsApp button"],
+ ["contact_btn_email","Contact page — Email button"],
+ ["product_quote_target","Product cards — “Request COA & Quote” target (email or URL)"],
+ ["float_whatsapp","Floating WhatsApp button — default target (no sales rep assigned)"]
+];
+let linksDefaults={}, linksCurrent={};
+async function loadLinks(){
+  try{ linksDefaults=JSON.parse((await readRepoFile("assets/site-links.defaults.json")).content); }catch(e){ linksDefaults={}; }
+  try{ linksCurrent=JSON.parse((await readRepoFile("assets/site-links.json")).content); }catch(e){ linksCurrent={}; }
+  const host=document.getElementById("linkFields"); host.innerHTML="";
+  LINK_LABELS.forEach(function(pair){
+    const key=pair[0], label=pair[1];
+    const wrap=el("div");
+    wrap.appendChild(el("label",null,esc(label)+'  <span style="color:#6E85A6;font-weight:400">('+esc(key)+')</span>'));
+    const inp=el("input"); inp.type="text"; inp.id="lk_"+key;
+    inp.placeholder="default: "+(linksDefaults[key]||"");
+    inp.value=(linksCurrent[key]!=null?linksCurrent[key]:"");
+    wrap.appendChild(inp);
+    host.appendChild(wrap);
+  });
+}
+document.getElementById("btnSaveLinks").onclick=async()=>{
+  const b=document.getElementById("btnSaveLinks"); b.disabled=true;
+  try{
+    const out={};
+    LINK_LABELS.forEach(function(pair){
+      const v=(document.getElementById("lk_"+pair[0]).value||"").trim();
+      out[pair[0]] = v || linksDefaults[pair[0]] || "";
+    });
+    await writeRepoFile("assets/site-links.json",JSON.stringify(out,null,2)+"\n","update buttons & links");
+    toast("Buttons & links saved — live in 1-2 min ✔");
+  }catch(e){ toast("Save failed: "+e.message,true); }
+  b.disabled=false;
+};
+document.getElementById("btnResetLinks").onclick=async()=>{
+  const b=document.getElementById("btnResetLinks"); b.disabled=true;
+  try{
+    const txt=(await readRepoFile("assets/site-links.defaults.json")).content;
+    await writeRepoFile("assets/site-links.json",txt,"reset buttons & links to default");
+    await loadLinks();
+    toast("Reset to built-in defaults ✔");
+  }catch(e){ toast("Reset failed: "+e.message,true); }
+  b.disabled=false;
+};
+
+/* ================= hero photo ================= */
+async function loadHero(){
+  const sel=document.getElementById("heroSelect"); if(!sel) return;
+  sel.innerHTML="";
+  PRODUCT_IMAGES.forEach(function(n){
+    const o=document.createElement("option"); o.value=n; o.textContent=n.replace(/^vial-/,"").replace(/\.png$/,"");
+    sel.appendChild(o);
+  });
+  try{
+    const f=await readRepoFile("assets/content.json");
+    const cj=JSON.parse(f.content);
+    if(cj.heroImage){ sel.value=cj.heroImage; }
+    document.getElementById("heroNote").textContent="current: "+(cj.heroImage||"vial-bpc-157.png")+" (default)";
+  }catch(e){ document.getElementById("heroNote").textContent="content.json: "+e.message; }
+}
+document.getElementById("btnSaveHero").onclick=async()=>{
+  const b=document.getElementById("btnSaveHero"); b.disabled=true;
+  try{
+    const f=await readRepoFile("assets/content.json");
+    const cj=JSON.parse(f.content);
+    cj.heroImage=document.getElementById("heroSelect").value;
+    cj.assetsVersion=String(Date.now());
+    await writeRepoFile("assets/content.json",JSON.stringify(cj,null,2)+"\n","set homepage hero photo");
+    document.getElementById("heroNote").textContent="saved: "+cj.heroImage+" (live in 1-2 min)";
+    toast("Hero photo saved ✔");
+  }catch(e){ toast("Save failed: "+e.message,true); }
+  b.disabled=false;
+};
+
+/* ================= proof / gallery images ================= */
+async function loadProof(){
+  const host=document.getElementById("proofList"); if(!host) return;
+  host.innerHTML='<div class="note">loading…</div>';
+  try{
+    const list=await gh("GET","/repos/"+OWNER_REPO+"/contents/assets/proof?ref=main");
+    const files=(Array.isArray(list)?list:[]).filter(f=>/\.(png|jpe?g|webp|gif)$/i.test(f.name));
+    if(!files.length){ host.innerHTML='<div class="note">No images yet — upload the first one above.</div>'; return; }
+    host.innerHTML="";
+    files.forEach(function(f){
+      const row=el("div","prod");
+      const img=document.createElement("img"); img.alt=""; img.src="https://qelvionbiotech.com/assets/proof/"+f.name;
+      const info=el("div","info"); info.appendChild(el("b",null,esc(f.name)));
+      info.appendChild(el("span",null,(Math.round(f.size/1024))+" KB"));
+      const del=el("button","btn btn-g","Delete");
+      del.onclick=async()=>{ del.disabled=true;
+        try{ await gh("DELETE","/repos/"+OWNER_REPO+"/contents/assets/proof/"+f.name,{message:"Admin: delete proof image "+f.name,sha:f.sha,branch:"main"}); toast("deleted ✔"); loadProof(); }
+        catch(e){ toast(e.message,true); del.disabled=false; } };
+      row.appendChild(img); row.appendChild(info); row.appendChild(del);
+      host.appendChild(row);
+    });
+  }catch(e){
+    host.innerHTML='<div class="note">Folder assets/proof does not exist yet — uploading the first image will create it.</div>';
+  }
+}
+document.getElementById("btnProofUpload").onclick=async()=>{
+  const b=document.getElementById("btnProofUpload"); b.disabled=true;
+  try{
+    const file=document.getElementById("proofFile").files[0];
+    let name=(document.getElementById("proofName").value||"").trim();
+    if(!file){ toast("choose a file first",true); b.disabled=false; return; }
+    if(!name) name=file.name;
+    if(!/\.(png|jpe?g|webp|gif)$/i.test(name)){ toast("use .png / .jpg / .webp",true); b.disabled=false; return; }
+    if(file.size>6*1024*1024){ toast("max 6 MB",true); b.disabled=false; return; }
+    const bytes=new Uint8Array(await file.arrayBuffer());
+    let sha=null;
+    try{ const cur=await gh("GET","/repos/"+OWNER_REPO+"/contents/assets/proof/"+name+"?ref=main"); sha=cur.sha; }catch(e){}
+    const body={message:"Admin: upload proof image "+name,content:bytesToB64(bytes),branch:"main"};
+    if(sha) body.sha=sha;
+    await gh("PUT","/repos/"+OWNER_REPO+"/contents/assets/proof/"+name,body);
+    toast("uploaded ✔ (live in 1-2 min)");
+    loadProof();
+  }catch(e){ toast("Upload failed: "+e.message,true); }
+  b.disabled=false;
+};
+/* load link + brand panels together with the dashboard */
+const _showDash=showDash;
+showDash=function(){ _showDash(); loadLinks(); loadHero(); loadProof(); };
 
 loadFromLocal();
 </script>

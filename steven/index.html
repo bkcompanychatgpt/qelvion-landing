@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <base href="/">
 <meta name="qv-sales" content="steven">
-<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="noindex,follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QELVION Biotech — Research-Grade Peptide Manufacturing &amp; CDMO Partner</title>
 <meta name="google-site-verification" content="p9_jwIzaceiTknmiU2VkoZjLsjhx4XSirlUAiOb_tHM">
@@ -640,14 +640,14 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     </a>
     <nav class="menu" aria-label="Primary">
       <a href="#products">Products</a>
-      <a href="catalog.html">Catalog</a>
+      <a href="catalog.html" data-qv="nav_catalog">Catalog</a>
       <a href="#process">Manufacturing</a>
       <a href="#quality">Quality</a>
       <a href="#about">Why QELVION</a>
-      <a href="#faq">FAQ</a>
+      <a href="#faq" data-qv="nav_faq">FAQ</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary btn-desktop" href="#contact">Request a Quote
+      <a class="btn btn-primary btn-desktop" href="#contact" data-qv="header_cta">Request a Quote
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -678,10 +678,10 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <h1><span id="tHeroPre">Precision peptide manufacturing,</span> <span id="tHeroAccent" class="grad-text">from molecule to vial.</span></h1>
       <p class="lead" id="tHeroSub">QELVION Biotech partners with research institutions, biotech and pharmaceutical R&amp;D teams, and licensed distributors — delivering HPLC-verified research peptides, custom synthesis and private-label manufacturing, with a Certificate of Analysis on every single batch.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#contact">Request a Quote<span id="tCtaA"></span>
+        <a class="btn btn-primary" href="#contact" data-qv="hero_cta_primary">Request a Quote<span id="tCtaA"></span>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a class="btn btn-ghost" href="#products"><span id="tCtaB">Explore the Portfolio</span></a>
+        <a class="btn btn-ghost" href="#products" data-qv="hero_cta_secondary"><span id="tCtaB">Explore the Portfolio</span></a>
       </div>
       <div class="chip-row">
         <span class="chip" id="tChip1"><b>≥99%</b> HPLC purity</span>
@@ -752,7 +752,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
         <div class="eyebrow">Why QELVION</div>
         <h2 style="font-size:clamp(1.9rem,3.6vw,2.9rem);margin-top:16px">Built like a manufacturer.<br>Run like a science partner.</h2>
       </div>
-      <a class="head-link" href="#contact">Talk to our team
+      <a class="head-link" href="#contact" data-qv="products_talk_team">Talk to our team
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -789,7 +789,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <h2 id="tProdTitle">Peptide capabilities across<br>the research spectrum</h2>
       <p class="lead" id="tProdLead">Lyophilized research peptides and custom molecules organized by application area. Full 120+ SKU catalog, technical datasheets and COAs available on request.</p>
       <div style="margin-top:22px">
-        <a class="head-link" href="catalog.html">Browse the full product catalog
+        <a class="head-link" href="catalog.html" data-qv="products_browse_catalog">Browse the full product catalog
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1101,13 +1101,13 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <h4>Company</h4>
       <ul>
         <li><a href="#about">Why QELVION</a></li>
-        <li><a href="catalog.html">Research Catalog</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="catalog.html" data-qv="footer_catalog">Research Catalog</a></li>
+        <li><a href="about.html" data-qv="footer_about">About us</a></li>
+        <li><a href="contact.html" data-qv="footer_contact">Contact</a></li>
+        <li><a href="privacy.html" data-qv="footer_privacy">Privacy policy</a></li>
         <li><a href="#process">Manufacturing</a></li>
         <li><a href="#quality">Quality &amp; Certifications</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#faq" data-qv="nav_faq">FAQ</a></li>
       </ul>
     </div>
     <div>
@@ -1390,6 +1390,9 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     s.src="assets/contact-modal.js?v="+Date.now();
     document.head.appendChild(s);
   })();
+  </script>
+  <script>
+  (function(){var s=document.createElement("script");s.src="assets/link-slots.js?v="+Date.now();document.head.appendChild(s);})();
   </script>
 </body>
 </html>

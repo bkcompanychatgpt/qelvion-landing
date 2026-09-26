@@ -322,14 +322,14 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <span><span class="brand-name">QELVION</span><div class="brand-sub">BIOTECH</div></span>
     </a>
     <nav class="menu" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="catalog.html" class="active" aria-current="page">Catalog</a>
+      <a href="index.html" data-qv="nav_home">Home</a>
+      <a href="catalog.html" data-qv="nav_catalog" class="active" aria-current="page">Catalog</a>
       <a href="index.html#process">Manufacturing</a>
       <a href="index.html#quality">Quality</a>
       <a href="index.html#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary btn-desktop" href="index.html#contact">Request a Quote</a>
+      <a class="btn btn-primary btn-desktop" href="index.html#contact" data-qv="header_cta">Request a Quote</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -351,7 +351,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
 <!-- hero -->
 <section class="cat-hero">
   <div class="wrap">
-    <div class="crumbs"><a href="index.html">Home</a><span style="opacity:.4">/</span><span style="color:var(--acc)">Research Catalog</span></div>
+    <div class="crumbs"><a href="index.html" data-qv="nav_home">Home</a><span style="opacity:.4">/</span><span style="color:var(--acc)">Research Catalog</span></div>
     <div class="eyebrow">Catalog · 120+ SKUs</div>
     <h1>Research peptides, <span class="grad-text">verified and documented.</span></h1>
     <p class="lead">A representative selection from our manufacturing catalog — every line lyophilized in sterile vials, HPLC/MS verified at ≥99%, and shipped with a batch Certificate of Analysis. Products not listed are available on request.</p>
@@ -387,7 +387,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       <p><b>Need a peptide we haven’t listed, or a custom analog?</b> Request the full 120+ SKU catalog with COAs, or brief us on your custom-synthesis project — sequences are handled under NDA.</p>
     </div>
     <div style="text-align:center;padding:44px 0 70px" class="rv">
-      <a class="btn btn-primary" style="font-size:16px;padding:16px 30px" href="index.html#contact">Request Full Catalog &amp; COAs
+      <a class="btn btn-primary" style="font-size:16px;padding:16px 30px" href="index.html#contact" data-qv="catalog_cta_final">Request Full Catalog &amp; COAs
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <p class="lead" style="margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em">We reply within one business day · main@qelvionbiotech.com</p>
@@ -423,9 +423,9 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
         <li><a href="index.html#process">Manufacturing</a></li>
         <li><a href="index.html#quality">Quality &amp; Certifications</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="about.html" data-qv="footer_about">About us</a></li>
+        <li><a href="contact.html" data-qv="footer_contact">Contact</a></li>
+        <li><a href="privacy.html" data-qv="footer_privacy">Privacy policy</a></li>
       </ul>
     </div>
     <div>
@@ -568,6 +568,21 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   var total=0;
   CATS.forEach(function(c){total+=c.items.length;});
 
+  /* product "Request COA & Quote" destination comes from the admin panel
+     (assets/site-links.json -> product_quote_target) */
+  function quoteHref(name){
+    var t=(window.QVLinks&&QVLinks.product_quote_target)||("mailto:"+EMAIL);
+    var subj=encodeURIComponent("Quote & COA request — "+name);
+    if(/^https?:/i.test(t)) return t;
+    var mail=t.replace(/^mailto:/i,"");
+    return "mailto:"+mail+"?subject="+subj;
+  }
+  function refreshQuoteLinks(){
+    document.querySelectorAll("a.act[data-qv-quote]").forEach(function(a){
+      a.setAttribute("href", quoteHref(a.getAttribute("data-qv-quote")));
+    });
+  }
+  document.addEventListener("qvlinks", refreshQuoteLinks);
   /* branded lyophilized-vial renderer (market 西林瓶 look) */
   var vialSeq=0;
   function mgLine(spec){return (spec||"").toUpperCase().replace(" VIALS","");}
@@ -671,7 +686,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
         '<div class="top"><div><h3>'+p.n+'</h3><div class="code">'+p.code+'</div></div><span class="coa">COA</span></div>'+
         '<p>'+p.d+'</p>'+
         '<div class="spec"><i>■</i> '+p.spec.toUpperCase()+' &nbsp;·&nbsp; ≥99% HPLC</div>'+
-        '<a class="act" href="mailto:'+EMAIL+'?subject='+encodeURIComponent("Quote & COA request — "+p.n)+'">Request COA &amp; Quote <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+        '<a class="act" href=""+quoteHref(p.n)+"" data-qv-quote=""+p.n+"">Request COA &amp; Quote <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
       grid.appendChild(card);
       var pf=IMGMAP[p.n]; if(pf){attachPhoto(card.querySelector('.shot'),'assets/products/'+pf);}
       total==total;
@@ -743,6 +758,9 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     s.src="assets/contact-modal.js?v="+Date.now();
     document.head.appendChild(s);
   })();
+  </script>
+  <script>
+  (function(){var s=document.createElement("script");s.src="assets/link-slots.js?v="+Date.now();document.head.appendChild(s);})();
   </script>
 </body>
 </html>

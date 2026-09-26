@@ -105,7 +105,7 @@ footer a:hover{color:var(--txt)}
       <span><b>QELVION</b><small>BIOTECH</small></span>
     </a>
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" data-qv="nav_home">Home</a>
       <a href="catalog.html">Catalog</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
@@ -160,11 +160,11 @@ footer a:hover{color:var(--txt)}
         <p style="color:var(--mut);font-size:13.5px;margin-top:14px;max-width:34ch">Research-grade peptide manufacturing &amp; CDMO partnership. Established 2019 · Asia–Pacific.</p>
       </div>
       <div><h4>Company</h4><ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About us</a></li>
+        <li><a href="index.html" data-qv="nav_home">Home</a></li>
+        <li><a href="about.html" data-qv="footer_about">About us</a></li>
         <li><a href="catalog.html">Research catalog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy policy</a></li>
+        <li><a href="contact.html" data-qv="footer_contact">Contact</a></li>
+        <li><a href="privacy.html" data-qv="footer_privacy">Privacy policy</a></li>
       </ul></div>
       <div><h4>Capabilities</h4><ul>
         <li>Custom synthesis</li><li>Lyophilized vials</li><li>Private label / OEM</li><li>COA &amp; HPLC/MS</li>
@@ -190,6 +190,9 @@ footer a:hover{color:var(--txt)}
     s.src="assets/contact-modal.js?v="+Date.now();
     document.head.appendChild(s);
   })();
+  </script>
+  <script>
+  (function(){var s=document.createElement("script");s.src="assets/link-slots.js?v="+Date.now();document.head.appendChild(s);})();
   </script>
 </body>
 </html>
