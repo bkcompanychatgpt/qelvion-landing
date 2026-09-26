@@ -128,7 +128,10 @@
     /* 2) email buttons follow the assigned salesperson */
     function fixMail() {
       var target = person ? person.email : data.main.email;
+      window.QV_ASSIGNED_EMAIL = person ? person.email : "";
+      try{ document.dispatchEvent(new Event("qvrep")); }catch(e){}
       document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+        if (a.hasAttribute("data-qv-quote")) return; /* product quote buttons are handled by the catalog */
         var href = a.getAttribute("href") || "";
         var addr = href.replace(/^mailto:/i, "").split("?")[0];
         var mainAddr = String(data.main.email || "").toLowerCase();

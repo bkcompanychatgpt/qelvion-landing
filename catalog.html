@@ -571,7 +571,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   /* product "Request COA & Quote" destination comes from the admin panel
      (assets/site-links.json -> product_quote_target) */
   function quoteHref(name){
-    var t=(window.QVLinks&&QVLinks.product_quote_target)||("mailto:"+EMAIL);
+    var t=(window.QV_ASSIGNED_EMAIL?("mailto:"+window.QV_ASSIGNED_EMAIL):((window.QVLinks&&QVLinks.product_quote_target)||("mailto:"+EMAIL)));
     var subj=encodeURIComponent("Quote & COA request — "+name);
     if(/^https?:/i.test(t)) return t;
     var mail=t.replace(/^mailto:/i,"");
@@ -583,6 +583,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     });
   }
   document.addEventListener("qvlinks", refreshQuoteLinks);
+  document.addEventListener("qvrep", refreshQuoteLinks);
   /* branded lyophilized-vial renderer (market 西林瓶 look) */
   var vialSeq=0;
   function mgLine(spec){return (spec||"").toUpperCase().replace(" VIALS","");}
@@ -686,7 +687,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
         '<div class="top"><div><h3>'+p.n+'</h3><div class="code">'+p.code+'</div></div><span class="coa">COA</span></div>'+
         '<p>'+p.d+'</p>'+
         '<div class="spec"><i>■</i> '+p.spec.toUpperCase()+' &nbsp;·&nbsp; ≥99% HPLC</div>'+
-        '<a class="act" href=""+quoteHref(p.n)+"" data-qv-quote=""+p.n+"">Request COA &amp; Quote <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+        '<a class="act" href="'+quoteHref(p.n)+'" data-qv-quote="'+p.n+'">Request COA &amp; Quote <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
       grid.appendChild(card);
       var pf=IMGMAP[p.n]; if(pf){attachPhoto(card.querySelector('.shot'),'assets/products/'+pf);}
       total==total;
