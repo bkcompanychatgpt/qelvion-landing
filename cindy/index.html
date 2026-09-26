@@ -28,7 +28,7 @@ window.__QTHEME_DEFAULT='dark';
 (function(){
   window.__QVREADY = fetch("assets/content.json?v="+Date.now())
     .then(function(r){return r.ok?r.json():null;})
-    .then(function(c){ if(c&&c.assetsVersion) window.__QVV=c.assetsVersion; return c; })
+    .then(function(c){ if(c&&c.assetsVersion) window.__QVV=c.assetsVersion; if(c&&c.heroImage) window.__QVHERO=c.heroImage; return c; })
     .catch(function(){ return null; });
   function apply(){
     var Q=window.QVSITE; if(!Q) return;
@@ -42,7 +42,8 @@ window.__QTHEME_DEFAULT='dark';
            而且这个 apply() 在 1.2 秒后还会再跑一次，会盖掉
            assets/contact-modal.js 设好的个人邮箱（真浏览器验收抓到的）。 */
         if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
-        a.setAttribute("href","mailto:"+e);
+        if(a.hasAttribute("data-qv-quote")) return;
+        a.setAttribute("href", href.replace(OLD_MAIL, e));
         if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,e);}
       });
     }
@@ -1369,7 +1370,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
   }  function buildVials(){
     var heroWrap=document.getElementById("heroVial");
     if(heroWrap){heroWrap.innerHTML=vial("BPC-157","5 MG","hv");}
-    if(heroWrap){attachPhoto(heroWrap,"assets/products/vial-bpc-157.png");}
+    if(heroWrap){attachPhoto(heroWrap,"assets/products/"+(window.__QVHERO||"vial-bpc-157.png"));}
     var showcase=[["MOTS-c","20 MG"],["BPC-157","5 MG"],["GHK-Cu","50 MG"],["NAD+","500 MG"],["Custom Synthesis","MG → KG"],["GLOW Blend","70 MG"]];
     var pcards=document.querySelectorAll("#products .prod-card");
     for(var vi=0; vi<pcards.length && vi<showcase.length; vi++){

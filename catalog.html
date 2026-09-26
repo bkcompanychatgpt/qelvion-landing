@@ -28,9 +28,15 @@ window.__QTHEME_DEFAULT='dark';
     var e=(Q.email||"").trim();
     if(e){
       document.querySelectorAll('a[href^="mailto:"]').forEach(function(a){
-        a.setAttribute("href","mailto:"+e);
-        var t=a.textContent.trim();
-        if(t.indexOf("main@qelvionbiotech.com")!==-1){a.textContent=t.replace("main@qelvionbiotech.com",e);}
+        if(a.hasAttribute("data-qv-quote")) return;               /* product quote buttons keep name/subject */
+        var h=a.getAttribute("href")||"";
+        var addr=h.replace(/^mailto:/i,"").split("?")[0];
+        if(addr.toLowerCase()===String(e).toLowerCase()) return;
+        if(/qelvionbiotech\.com$/i.test(addr)){                    /* company addresses -> configured email */
+          a.setAttribute("href", h.replace(addr, e));
+          var t=a.textContent.trim();
+          if(t.indexOf("@")!==-1) a.textContent=t.replace(/\S+@\S+/, e);
+        }
       });
     }
     var wb=document.getElementById("waFloat");

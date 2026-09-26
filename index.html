@@ -39,7 +39,8 @@ window.__QTHEME_DEFAULT='dark';
            而且这个 apply() 在 1.2 秒后还会再跑一次，会盖掉
            assets/contact-modal.js 设好的个人邮箱（真浏览器验收抓到的）。 */
         if(href.indexOf(OLD_MAIL)===-1 && t.indexOf(OLD_MAIL)===-1){ return; }
-        a.setAttribute("href","mailto:"+e);
+        if(a.hasAttribute("data-qv-quote")) return;
+        a.setAttribute("href", href.replace(OLD_MAIL, e));
         if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,e);}
       });
     }
