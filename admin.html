@@ -153,9 +153,13 @@ input[type=file]{color:var(--mut);font-size:13px}
       <div class="row">
         <input type="text" id="proofName" placeholder="file name, e.g. packing-01.jpg" style="max-width:280px">
         <input type="file" id="proofFile" accept="image/*">
+        <input type="text" id="proofCaption" placeholder="caption (optional), e.g. Batch QV-8821 packed &amp; QC-released" style="max-width:340px">
         <button class="btn btn-g" id="btnProofUpload">Upload</button>
       </div>
       <div id="proofList" style="margin-top:14px"></div>
+      <label style="margin-top:18px">Customer reviews (one per line: text | name | role)</label>
+      <textarea id="reviewBox" placeholder="Arrived in 9 days, packaging perfect. | R. | research lab, Germany"></textarea>
+      <div class="row" style="margin-top:10px"><button class="btn btn-g" id="btnSaveReviews">Save reviews</button><span class="note" id="revNote"></span></div>
     </div>
   </div>
   <!-- guide -->
@@ -500,7 +504,7 @@ async function loadProof(){
       info.appendChild(el("span",null,(Math.round(f.size/1024))+" KB"));
       const del=el("button","btn btn-g","Delete");
       del.onclick=async()=>{ del.disabled=true;
-        try{ await gh("DELETE","/repos/"+OWNER_REPO+"/contents/assets/proof/"+f.name,{message:"Admin: delete proof image "+f.name,sha:f.sha,branch:"main"}); toast("deleted ✔"); loadProof(); }
+        try{ await gh("DELETE","/repos/"+OWNER_REPO+"/contents/assets/proof/"+f.name,{message:"Admin: delete proof image "+f.name,sha:f.sha,branch:"main"}); try{ const m=await proofManifest(); m.images=(m.images||[]).filter(function(x){return x.file!==f.name;}); await proofManifestSave(m,"remove proof image "+f.name); }catch(e){} toast("deleted ✔"); loadProof(); }
         catch(e){ toast(e.message,true); del.disabled=false; } };
       row.appendChild(img); row.appendChild(info); row.appendChild(del);
       host.appendChild(row);
@@ -509,6 +513,33 @@ async function loadProof(){
     host.innerHTML='<div class="note">Folder assets/proof does not exist yet — uploading the first image will create it.</div>';
   }
 }
+/* keep assets/proof.json in sync with uploaded/deleted images */
+async function proofManifest(){
+  try{ const f=await readRepoFile("assets/proof.json"); return JSON.parse(f.content); }catch(e){ return {images:[],reviews:[]}; }
+}
+async function proofManifestSave(obj,msg){
+  await writeRepoFile("assets/proof.json",JSON.stringify(obj,null,2)+"\n",msg);
+}
+async function loadReviews(){
+  const box=document.getElementById("reviewBox"); if(!box) return;
+  const m=await proofManifest();
+  box.value=(m.reviews||[]).map(r=>[r.text,r.name||"",r.role||""].join(" | ")).join("\n");
+  document.getElementById("revNote").textContent=(m.reviews||[]).length+" review(s) stored";
+}
+document.getElementById("btnSaveReviews").onclick=async()=>{
+  const b=document.getElementById("btnSaveReviews"); b.disabled=true;
+  try{
+    const m=await proofManifest();
+    m.reviews=(document.getElementById("reviewBox").value||"").split("\n").map(function(l){return l.trim();}).filter(Boolean).map(function(l){
+      const p=l.split("|").map(x=>x.trim());
+      return {text:p[0]||"",name:p[1]||"",role:p[2]||""};
+    });
+    await proofManifestSave(m,"update customer reviews");
+    document.getElementById("revNote").textContent=m.reviews.length+" review(s) stored";
+    toast("Reviews saved — live in 1-2 min ✔");
+  }catch(e){ toast("Save failed: "+e.message,true); }
+  b.disabled=false;
+};
 document.getElementById("btnProofUpload").onclick=async()=>{
   const b=document.getElementById("btnProofUpload"); b.disabled=true;
   try{
@@ -525,13 +556,15 @@ document.getElementById("btnProofUpload").onclick=async()=>{
     if(sha) body.sha=sha;
     await gh("PUT","/repos/"+OWNER_REPO+"/contents/assets/proof/"+name,body);
     toast("uploaded ✔ (live in 1-2 min)");
+    try{ const m=await proofManifest(); m.images=(m.images||[]).filter(function(x){return x.file!==name;});
+      m.images.push({file:name,caption:(document.getElementById("proofCaption").value||"").trim()}); await proofManifestSave(m,"add proof image "+name); }catch(e){}
     loadProof();
   }catch(e){ toast("Upload failed: "+e.message,true); }
   b.disabled=false;
 };
 /* load link + brand panels together with the dashboard */
 const _showDash=showDash;
-showDash=function(){ _showDash(); loadLinks(); loadHero(); loadProof(); };
+showDash=function(){ _showDash(); loadLinks(); loadHero(); loadProof(); loadReviews(); };
 
 loadFromLocal();
 </script>
