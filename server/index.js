@@ -119,8 +119,8 @@ async function sendViaJmap({ to, cc, replyTo, subject, text }) {
     to: [{ email: to }],
     subject,
     bodyValues: { body: { value: text } },
-    textBody: [{ partId: "body", type: "text/plain" }],
-    headers: [{ name: "X-Qelvion-Source", value: "website-quote-form" }]
+    textBody: [{ partId: "body", type: "text/plain" }]
+    /* note: Fastmail JMAP rejects custom headers on Email/set, so none are added */
   };
   if (cc) draft.cc = [{ email: cc }];
   if (replyTo) draft.replyTo = [{ email: replyTo }];
