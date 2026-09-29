@@ -206,7 +206,9 @@ async function sendViaResend({ to, cc, replyTo, subject, text }) {
    3) SMTP (may be blocked on some hosts)
    ============================================================ */
 let smtpTransport = null;
+let smtpBroken = false;   /* circuit breaker: hosts like Render block SMTP ports */
 async function sendViaSmtp({ to, cc, replyTo, subject, text }) {
+  if (smtpBroken) throw new Error("SMTP disabled after an earlier failure on this instance");
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) throw new Error("SMTP not configured");
   if (!smtpTransport) {
     smtpTransport = nodemailer.createTransport({
@@ -214,11 +216,17 @@ async function sendViaSmtp({ to, cc, replyTo, subject, text }) {
       port: Number(process.env.SMTP_PORT || 465),
       secure: Number(process.env.SMTP_PORT || 465) === 465,
       auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
-      connectionTimeout: 15000, greetingTimeout: 10000
+      connectionTimeout: 12000, greetingTimeout: 8000
     });
   }
-  await smtpTransport.sendMail({ from: MAIL_FROM, to, cc, replyTo, subject, text });
-  return "smtp";
+  try {
+    await smtpTransport.sendMail({ from: MAIL_FROM, to, cc, replyTo, subject, text });
+    return "smtp";
+  } catch (e) {
+    smtpBroken = true;                     /* do not pay this timeout again */
+    smtpTransport = null;
+    throw e;
+  }
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
