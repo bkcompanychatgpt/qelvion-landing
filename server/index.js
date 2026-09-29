@@ -125,9 +125,22 @@ async function sendViaJmap({ to, cc, replyTo, subject, text }) {
   if (cc) draft.cc = [{ email: cc }];
   if (replyTo) draft.replyTo = [{ email: replyTo }];
 
+  const sent = mailboxes.find((m) => m.role === "sent");
+  const onSuccess = {};
+  if (sent) {
+    onSuccess["#sub"] = {
+      ["mailboxIds/" + drafts.id]: null,
+      ["mailboxIds/" + sent.id]: true,
+      "keywords/$draft": null
+    };
+  }
   const rs = await jmapCall([
     ["Email/set", { accountId: acc, create: { draft } }, "e"],
-    ["EmailSubmission/set", { accountId: acc, create: { sub: { identityId: identity.id, emailId: "#draft" } } }, "s"]
+    ["EmailSubmission/set", {
+      accountId: acc,
+      create: { sub: { identityId: identity.id, emailId: "#draft" } },
+      onSuccessUpdateEmail: onSuccess
+    }, "s"]
   ]);
   const created = rs[0][1].created && rs[0][1].created.draft;
   const submitted = rs[1][1].created && rs[1][1].created.sub;
