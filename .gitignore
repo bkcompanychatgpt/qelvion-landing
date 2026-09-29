@@ -8,4 +8,7 @@ _browser-profile/
 Thumbs.db
 
 _browser/
+node_modules/
+server/node_modules/
+.env
 

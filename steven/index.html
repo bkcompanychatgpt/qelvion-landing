@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
 <base href="/">
 <meta name="qv-sales" content="steven">
 <meta name="robots" content="noindex,follow">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QELVION Biotech — Research-Grade Peptide Manufacturing &amp; CDMO Partner</title>
 <meta name="google-site-verification" content="p9_jwIzaceiTknmiU2VkoZjLsjhx4XSirlUAiOb_tHM">
@@ -1331,7 +1331,12 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
           ok.textContent="✓ Thank you — your request has been sent. Our team will reply within one business day.";
           ok.classList.add("show"); ok.scrollIntoView({behavior:"smooth",block:"center"}); form.reset(); })
         .catch(function(err){
-          ok.textContent="⚠ Automatic sending failed ("+err.message+"). Please email us directly at main@qelvionbiotech.com.";
+          /* never lose an enquiry: offer a prefilled mail fallback */
+          var dest=(window.QV_ASSIGNED_EMAIL||"main@qelvionbiotech.com");
+          var lines=["Name: "+payload.name,"Organization: "+(payload.org||"-"),"Email: "+payload.email,
+                     "Type: "+(payload.type||"-"),"Page: "+payload.page,"","Message:",payload.message].join("\n");
+          var mail="mailto:"+dest+"?subject="+encodeURIComponent("[Website enquiry] "+payload.name)+"&body="+encodeURIComponent(lines);
+          ok.innerHTML="⚠ Automatic sending failed. <a href='"+mail+"' style='color:inherit;text-decoration:underline'>Click here to send your request by email instead</a> — or write to <b>"+dest+"</b> directly.";
           ok.classList.add("show"); ok.scrollIntoView({behavior:"smooth",block:"center"}); })
         .then(function(){ if(btn){btn.disabled=false;btn.innerHTML=original;} });
     });

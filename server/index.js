@@ -87,30 +87,58 @@ async function jmapSession() {
   jmapCache = { at: Date.now(), session };
   return session;
 }
-async function jmapCall(methodCalls) {
+async function jmapCallRaw(methodCalls) {
   const s = await jmapSession();
   const r = await fetch(s.apiUrl, {
     method: "POST",
     headers: { Authorization: "Bearer " + process.env.FASTMAIL_API_TOKEN, "Content-Type": "application/json" },
     body: JSON.stringify({ using: ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:submission"], methodCalls })
   });
-  const j = await r.json();
-  if (!r.ok) throw new Error("JMAP call " + r.status + " " + JSON.stringify(j).slice(0, 200));
-  const bad = (j.methodResponses || []).find((m) => m[0].endsWith("/error"));
-  if (bad) throw new Error("JMAP " + bad[0] + ": " + JSON.stringify(bad[1]).slice(0, 200));
-  return j.methodResponses;
+  let j = null;
+  try { j = await r.json(); } catch (e) { j = null; }
+  if (!j || !Array.isArray(j.methodResponses)) {
+    throw new Error("JMAP call " + r.status + " " + JSON.stringify(j || {}).slice(0, 200));
+  }
+  return { responses: j.methodResponses, session: s };
 }
+async function jmapCall(methodCalls) {
+  const { responses } = await jmapCallRaw(methodCalls);
+  const bad = responses.find((m) => String(m[0]).endsWith("/error"));
+  if (bad) throw new Error("JMAP " + bad[0] + ": " + JSON.stringify(bad[1]).slice(0, 200));
+  return responses;
+}
+
+/* mailbox ids + sending identity, cached */
+let jmapMeta = { at: 0, drafts: null, sent: null, identityId: null };
+async function jmapMetaLoad(acc) {
+  if (jmapMeta.drafts && jmapMeta.identityId && Date.now() - jmapMeta.at < 30 * 60 * 1000) return jmapMeta;
+  const rs = await jmapCall([
+    ["Mailbox/get", { accountId: acc, ids: null, properties: ["id", "name", "role"] }, "m"],
+    ["Identity/get", { accountId: acc, ids: null }, "i"]
+  ]);
+  const boxes = rs[0][1].list || [];
+  const identities = rs[1][1].list || [];
+  const drafts = boxes.find((m) => m.role === "drafts") || boxes[0];
+  const sent = boxes.find((m) => m.role === "sent") || null;
+  const fromEmail = MAIL_FROM.toLowerCase();
+  const identity = identities.find((i) => (i.email || "").toLowerCase() === fromEmail) || identities[0];
+  if (!drafts) throw new Error("no Drafts mailbox in Fastmail account");
+  if (!identity) throw new Error("no sending identity found for " + MAIL_FROM);
+  jmapMeta = { at: Date.now(), drafts, sent, identityId: identity.id };
+  return jmapMeta;
+}
+async function jmapDestroyDraft(acc, id) {
+  try {
+    await jmapCall([["Email/set", { accountId: acc, destroy: [id] }, "d"]]);
+    console.log("cleaned up unsent draft " + id);
+  } catch (e) { console.error("draft cleanup failed:", e.message); }
+}
+
 async function sendViaJmap({ to, cc, replyTo, subject, text }) {
   const s = await jmapSession();
   const acc = s.accountId;
-  const [mbRes] = await jmapCall([["Mailbox/get", { accountId: acc, ids: null }, "m"]]);
-  const mailboxes = (mbRes[1].list || []);
-  const drafts = mailboxes.find((m) => m.role === "drafts") || mailboxes[0];
-  const [idRes] = await jmapCall([["Identity/get", { accountId: acc, ids: null }, "i"]]);
-  const identities = (idRes[1].list || []);
-  const fromEmail = MAIL_FROM.toLowerCase();
-  const identity = identities.find((i) => (i.email || "").toLowerCase() === fromEmail) || identities[0];
-  if (!identity) throw new Error("no sending identity found for " + MAIL_FROM);
+  const meta = await jmapMetaLoad(acc);
+  const { drafts, sent, identityId } = meta;
 
   const draft = {
     mailboxIds: { [drafts.id]: true },
@@ -125,7 +153,7 @@ async function sendViaJmap({ to, cc, replyTo, subject, text }) {
   if (cc) draft.cc = [{ email: cc }];
   if (replyTo) draft.replyTo = [{ email: replyTo }];
 
-  const sent = mailboxes.find((m) => m.role === "sent");
+  /* after a successful submission move the message out of Drafts into Sent */
   const onSuccess = {};
   if (sent) {
     onSuccess["#sub"] = {
@@ -134,18 +162,31 @@ async function sendViaJmap({ to, cc, replyTo, subject, text }) {
       "keywords/$draft": null
     };
   }
-  const rs = await jmapCall([
+
+  /* draft creation + submission in ONE request: no window where a restart
+     can leave an orphan draft behind */
+  const { responses } = await jmapCallRaw([
     ["Email/set", { accountId: acc, create: { draft } }, "e"],
     ["EmailSubmission/set", {
       accountId: acc,
-      create: { sub: { identityId: identity.id, emailId: "#draft" } },
+      create: { sub: { identityId, emailId: "#draft" } },
       onSuccessUpdateEmail: onSuccess
     }, "s"]
   ]);
-  const created = rs[0][1].created && rs[0][1].created.draft;
-  const submitted = rs[1][1].created && rs[1][1].created.sub;
-  if (!created || !submitted) throw new Error("JMAP submit failed: " + JSON.stringify(rs).slice(0, 250));
-  return "jmap";
+  const eRes = (responses[0] && responses[0][1]) || {};
+  const sRes = (responses[1] && responses[1][1]) || {};
+  const created = eRes.created && eRes.created.draft;
+  const submitted = sRes.created && sRes.created.sub;
+  if (created && submitted) return "jmap";
+
+  /* failure: never leave the enquiry sitting in Drafts pretending to be sent */
+  if (created && created.id) await jmapDestroyDraft(acc, created.id);
+  const detail = JSON.stringify({
+    email: eRes.notCreated || null,
+    submission: sRes.notCreated || null,
+    errors: responses.filter((m) => String(m[0]).endsWith("/error"))
+  }).slice(0, 300);
+  throw new Error("JMAP submit failed: " + detail);
 }
 
 /* ============================================================
@@ -180,27 +221,79 @@ async function sendViaSmtp({ to, cc, replyTo, subject, text }) {
   return "smtp";
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function sendMail(msg) {
-  if (process.env.FASTMAIL_API_TOKEN) return await sendViaJmap(msg);
-  if (process.env.RESEND_API_KEY) return await sendViaResend(msg);
-  return await sendViaSmtp(msg);
+  const failures = [];
+  if (process.env.FASTMAIL_API_TOKEN) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try { return await sendViaJmap(msg); }
+      catch (e) {
+        failures.push("jmap#" + attempt + ": " + e.message);
+        console.error("quote transport jmap attempt " + attempt + " failed:", e.message);
+        if (attempt === 1) await sleep(900);
+      }
+    }
+  }
+  if (process.env.RESEND_API_KEY) {
+    try { return await sendViaResend(msg); }
+    catch (e) { failures.push("resend: " + e.message); console.error("quote transport resend failed:", e.message); }
+  }
+  if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+    try { return await sendViaSmtp(msg); }
+    catch (e) { failures.push("smtp: " + e.message); console.error("quote transport smtp failed:", e.message); }
+  }
+  throw new Error(failures.join(" | ") || "no mail transport configured");
 }
 function transportName() {
-  if (process.env.FASTMAIL_API_TOKEN) return "fastmail-jmap";
-  if (process.env.RESEND_API_KEY) return "resend";
-  if (process.env.SMTP_USER) return "smtp";
-  return "none";
+  const list = [];
+  if (process.env.FASTMAIL_API_TOKEN) list.push("fastmail-jmap");
+  if (process.env.RESEND_API_KEY) list.push("resend");
+  if (process.env.SMTP_USER) list.push("smtp");
+  return list.join("+") || "none";
 }
 
 /* ---------- helpers ---------- */
 const clean = (v, max) => String(v == null ? "" : v).replace(/\r/g, "").trim().slice(0, max || 400);
 const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 
+/* ---------- last resort: park an undeliverable enquiry inside Fastmail ---------- */
+const PARK_MAILBOX = process.env.PARK_MAILBOX || "Enquiries (not sent)";
+async function jmapPark({ subject, text, note }) {
+  if (!process.env.FASTMAIL_API_TOKEN) return false;
+  try {
+    const s = await jmapSession();
+    const acc = s.accountId;
+    const rs = await jmapCall([["Mailbox/get", { accountId: acc, ids: null, properties: ["id", "name", "role"] }, "m"]]);
+    let box = (rs[0][1].list || []).find((m) => m.name === PARK_MAILBOX);
+    if (!box) {
+      const cr = await jmapCall([["Mailbox/set", { accountId: acc, create: { p: { name: PARK_MAILBOX, parentId: null } }, onDestroyRemoveEmails: false }, "c"]]);
+      const made = cr[0][1].created && cr[0][1].created.p;
+      if (!made) throw new Error("mailbox create failed");
+      box = made;
+    }
+    const msg = {
+      mailboxIds: { [box.id]: true },
+      keywords: { $flagged: true },
+      from: [{ name: "Qelvion website", email: MAIL_FROM }],
+      to: [{ email: FALLBACK_TO }],
+      subject: "[NOT SENT] " + subject,
+      bodyValues: { body: { value: text + "\n\n--\nAutomatic delivery failed: " + (note || "unknown") + "\nThis enquiry was NOT emailed to anyone. Please forward it manually.\n" } },
+      textBody: [{ partId: "body", type: "text/plain" }]
+    };
+    const cr2 = await jmapCall([["Email/set", { accountId: acc, create: { p: msg } }, "e"]]);
+    const ok = !!(cr2[0][1].created && cr2[0][1].created.p);
+    if (ok) console.error("quote parked in Fastmail folder \"" + PARK_MAILBOX + "\"");
+    return ok;
+  } catch (e) { console.error("park failed:", e.message); return false; }
+}
+
 /* ---------- routes ---------- */
 app.get("/", (_req, res) => res.type("text/plain").send("QELVION quote API is running."));
-app.get("/health", (_req, res) => res.json({ ok: true, transport: transportName() }));
+app.get("/health", (_req, res) => res.json({ ok: true, transport: transportName(), park: PARK_MAILBOX }));
 
 app.post("/api/quote", async (req, res) => {
+  let subject = "", text = "";
   try {
     const b = req.body || {};
     if (clean(b.company_website)) return res.json({ ok: true });            // honeypot
@@ -223,8 +316,8 @@ app.post("/api/quote", async (req, res) => {
     const cc = person && person.email ? mainEmail : undefined;
 
     const when = new Date().toISOString().replace("T", " ").slice(0, 16) + " UTC";
-    const subject = "[Website quote] " + name + (org ? " · " + org : "") + (person ? " · " + person.name : " · main");
-    const text =
+    subject = "[Website quote] " + name + (org ? " · " + org : "") + (person ? " · " + person.name : " · main");
+    text =
       "New enquiry from the website\n" +
       "================================\n" +
       "Name:         " + name + "\n" +
@@ -244,7 +337,16 @@ app.post("/api/quote", async (req, res) => {
     return res.json({ ok: true, deliveredTo: person ? person.name : "main", transport: used });
   } catch (e) {
     console.error("quote error:", e.message);
-    return res.status(500).json({ ok: false, error: "Could not send your request. Please email us directly." });
+    /* every transport failed: park the enquiry in Fastmail so it is not lost */
+    let parked = false;
+    if (subject && text) parked = await jmapPark({ subject, text, note: e.message });
+    return res.status(500).json({
+      ok: false,
+      parked,
+      error: parked
+        ? "Automatic delivery failed. Please email us directly at " + FALLBACK_TO + "."
+        : "Could not send your request. Please email us directly."
+    });
   }
 });
 
