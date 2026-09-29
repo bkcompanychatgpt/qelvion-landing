@@ -1,0 +1,31 @@
+# Render blueprint — creates the quote-form API service.
+# Use: Render dashboard → New + → Blueprint → pick this repository.
+services:
+  - type: web
+    name: qelvion-quote-api
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: MAIL_FROM
+        value: orders@qelvionbiotech.com
+      - key: MAIL_FALLBACK_TO
+        value: main@qelvionbiotech.com
+      - key: SMTP_HOST
+        value: smtp.fastmail.com
+      - key: SMTP_PORT
+        value: "465"
+      - key: SMTP_USER
+        value: orders@qelvionbiotech.com
+      - key: ALLOW_ORIGIN
+        value: https://qelvionbiotech.com
+      - key: CONTACTS_URL
+        value: https://qelvionbiotech.com/assets/contacts.json
+      # Secrets: set these in the Render dashboard (do not commit them)
+      - key: SMTP_PASS
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false

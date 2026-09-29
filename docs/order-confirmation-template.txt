@@ -1,0 +1,51 @@
+ORDER CONFIRMATION EMAIL — NEUTRAL TEMPLATE (paste into Fastmail)
+=================================================================
+WHY: drug names in the subject/body (Retatrutide, Semax, Selank…) are
+the single biggest spam trigger, together with markdown asterisks and
+template leftovers such as "**Subject:**". Use internal codes instead.
+
+SUBJECT (keep short, no product names, no asterisks)
+-----------------------------------------------------------------
+Order confirmation · {ORDER_ID} | Qelvion Biotech
+
+BODY (plain text, no asterisks, no attachments)
+-----------------------------------------------------------------
+Hello {FIRST_NAME},
+
+Thank you for your order with Qelvion Biotech. Please review the summary below.
+
+Order {ORDER_ID}
+Items
+  {CODE} · {QTY} box ({VIALS} vials) — ${PRICE}
+  {CODE} · {QTY} box ({VIALS} vials) — ${PRICE}
+  {CODE} · {QTY} box ({VIALS} vials) — ${PRICE}
+Total: ${TOTAL} (shipping included)
+
+Ship to
+  {ADDRESS_LINE_1}
+  {CITY}, {STATE} {ZIP}, {COUNTRY}
+
+Payment: received
+
+Your order has been passed to our warehouse and is being prepared for
+shipment. Once it has been dispatched we will send you the tracking
+number so you can follow the delivery.
+
+If any of the information above is incorrect, please let us know as soon
+as possible so we can update your order before it leaves our facility.
+
+Best regards,
+{SALES_NAME} — Qelvion Biotech
+orders@qelvionbiotech.com · https://qelvionbiotech.com
+
+-----------------------------------------------------------------
+RULES THAT KEEP IT OUT OF SPAM
+-----------------------------------------------------------------
+1. Never put the word "Subject:" or ** asterisks ** inside the subject or body.
+2. No PDF/attachments — link to a page instead if you must share a document.
+3. Use product CODES (see product-codes.csv) instead of full drug names.
+4. Keep the total number of links low (0–2). No URL shorteners (bit.ly etc.).
+5. Send replies inside the customer's existing thread whenever possible.
+6. Test with DUMMY data only (never a real customer's name/address).
+7. Ask the customer once to add orders@qelvionbiotech.com to their contacts
+   and to press "Not spam" if it lands in the spam folder.

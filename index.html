@@ -1300,16 +1300,37 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
     so.observe(statBox);
   }
 
-  /* quote form (demo handler) */
+  /* quote form -> QELVION quote API (emails the assigned salesperson) */
+  var QUOTE_API="https://qelvion-quote-api.onrender.com/api/quote";
   var form=document.getElementById("quoteForm");
   var ok=document.getElementById("formOk");
   if(form){
     form.addEventListener("submit",function(e){
       e.preventDefault();
       if(!form.checkValidity()){form.reportValidity();return;}
-      ok.classList.add("show");
-      ok.scrollIntoView({behavior:"smooth",block:"center"});
-      form.querySelector("button[type=submit]").disabled=true;
+      var btn=form.querySelector("button[type=submit]");
+      var rep="";
+      try{ var s=JSON.parse(localStorage.getItem("qv_sales_ctx")||"null"); if(s&&s.slug) rep=s.slug; }catch(err){}
+      var payload={
+        name:(document.getElementById("fName")||{}).value||"",
+        org:(document.getElementById("fOrg")||{}).value||"",
+        email:(document.getElementById("fMail")||{}).value||"",
+        type:(document.getElementById("fType")||{}).value||"",
+        message:(document.getElementById("fMsg")||{}).value||"",
+        company_website:(document.getElementById("fCompany")||{}).value||"",
+        rep:rep, page:location.href
+      };
+      var original=btn?btn.innerHTML:"";
+      if(btn){btn.disabled=true;btn.innerHTML="Sending…";}
+      fetch(QUOTE_API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+        .then(function(r){return r.json().catch(function(){return {ok:r.ok};});})
+        .then(function(j){ if(!j||!j.ok){throw new Error((j&&j.error)||"send failed");}
+          ok.textContent="✓ Thank you — your request has been sent. Our team will reply within one business day.";
+          ok.classList.add("show"); ok.scrollIntoView({behavior:"smooth",block:"center"}); form.reset(); })
+        .catch(function(err){
+          ok.textContent="⚠ Automatic sending failed ("+err.message+"). Please email us directly at main@qelvionbiotech.com.";
+          ok.classList.add("show"); ok.scrollIntoView({behavior:"smooth",block:"center"}); })
+        .then(function(){ if(btn){btn.disabled=false;btn.innerHTML=original;} });
     });
   }
   /* branded lyophilized-vial injection */
