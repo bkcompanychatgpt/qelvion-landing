@@ -25,6 +25,8 @@ services:
       - key: CONTACTS_URL
         value: https://qelvionbiotech.com/assets/contacts.json
       # Secrets: set these in the Render dashboard (do not commit them)
+      - key: FASTMAIL_API_TOKEN
+        sync: false   # preferred: Fastmail JMAP over HTTPS (Render blocks outbound SMTP)
       - key: SMTP_PASS
         sync: false
       - key: RESEND_API_KEY
