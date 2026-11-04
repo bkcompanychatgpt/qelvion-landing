@@ -112,6 +112,8 @@
     function setWa() {
       var wa = document.getElementById("waFloat");
       if (!wa) return;
+      /* ★ 2026-11-04 老板：主 WhatsApp 被封 → 没有可用链接时**不显示**这个按钮 */
+      if (!link) { wa.remove(); return; }
       wa.dataset.qvSet = "1";
       wa.href = link;
       wa.setAttribute("aria-label", (person ? ("Chat with " + person.name) : "Chat with QELVION Biotech") + " on WhatsApp");
@@ -171,12 +173,17 @@
 
   /* ---------------- popup ---------------- */
   function salesRow(p, highlight) {
+    /* ★ 2026-11-04：主号被封 → 号码/链接为空时**不印那一行、也不出 WhatsApp 按钮**，
+       只留 Email（老板：main 就剩下 email 就好）。 */
+    var waNum = String(p.whatsappDisplay || "").trim();
+    var waLink = String(p.whatsappLink || "").trim();
     return '<div class="qv-row' + (highlight ? " person" : "") + '">' +
       '<div class="qv-who"><b>' + esc(p.name) + '</b>' +
-      '<span>' + esc(p.email) + '</span><span>WhatsApp ' + esc(p.whatsappDisplay) + '</span></div>' +
+      '<span>' + esc(p.email) + '</span>' +
+      (waNum ? '<span>WhatsApp ' + esc(waNum) + '</span>' : '') + '</div>' +
       '<div class="qv-btns">' +
       '<a class="qv-btn mail" href="mailto:' + esc(p.email) + '">✉ Email</a>' +
-      '<a class="qv-btn wa" href="' + esc(p.whatsappLink) + '" target="_blank" rel="noopener">WhatsApp</a>' +
+      (waLink ? '<a class="qv-btn wa" href="' + esc(waLink) + '" target="_blank" rel="noopener">WhatsApp</a>' : '') +
       '</div></div>';
   }
   function build(data, person) {

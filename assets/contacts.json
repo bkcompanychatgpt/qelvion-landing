@@ -1,46 +1,46 @@
 {
-  "brand": "QELVION Biotech",
-  "main": {
-    "label": "QELVION Biotech — Main",
-    "email": "main@qelvionbiotech.com",
-    "whatsappDisplay": "+852 5366 1445",
-    "whatsappLink": "https://qelvionbiotech.wasap.my/"
+ "brand": "QELVION Biotech",
+ "main": {
+  "label": "QELVION Biotech — Main",
+  "email": "main@qelvionbiotech.com",
+  "whatsappDisplay": "",
+  "whatsappLink": ""
+ },
+ "sales": [
+  {
+   "slug": "steven",
+   "name": "Steven",
+   "email": "steven@qelvionbiotech.com",
+   "whatsappDisplay": "+852 4417 6374",
+   "whatsappLink": "https://qelvionsteven.wasap.my/"
   },
-  "sales": [
-    {
-      "slug": "steven",
-      "name": "Steven",
-      "email": "steven@qelvionbiotech.com",
-      "whatsappDisplay": "+852 4417 6374",
-      "whatsappLink": "https://qelvionsteven.wasap.my/"
-    },
-    {
-      "slug": "hannah",
-      "name": "Hannah",
-      "email": "hannah@qelvionbiotech.com",
-      "whatsappDisplay": "+852 9254 3367",
-      "whatsappLink": "https://qelvionhannah.wasap.my/"
-    },
-    {
-      "slug": "bryan",
-      "name": "Bryan",
-      "email": "bryan@qelvionbiotech.com",
-      "whatsappDisplay": "+852 9531 4271",
-      "whatsappLink": "https://qelvionbryan.wasap.my/"
-    },
-    {
-      "slug": "andrew",
-      "name": "Andrew",
-      "email": "andrew@qelvionbiotech.com",
-      "whatsappDisplay": "+852 4417 7409",
-      "whatsappLink": "https://qelvionandrew.wasap.my/"
-    },
-    {
-      "slug": "cindy",
-      "name": "Cindy",
-      "email": "cindy@qelvionbiotech.com",
-      "whatsappDisplay": "+852 9267 5254",
-      "whatsappLink": "https://qelvioncindy.wasap.my/"
-    }
-  ]
+  {
+   "slug": "hannah",
+   "name": "Hannah",
+   "email": "hannah@qelvionbiotech.com",
+   "whatsappDisplay": "+852 9254 3367",
+   "whatsappLink": "https://qelvionhannah.wasap.my/"
+  },
+  {
+   "slug": "bryan",
+   "name": "Bryan",
+   "email": "bryan@qelvionbiotech.com",
+   "whatsappDisplay": "+852 9531 4271",
+   "whatsappLink": "https://qelvionbryan.wasap.my/"
+  },
+  {
+   "slug": "andrew",
+   "name": "Andrew",
+   "email": "andrew@qelvionbiotech.com",
+   "whatsappDisplay": "+852 4417 7409",
+   "whatsappLink": "https://qelvionandrew.wasap.my/"
+  },
+  {
+   "slug": "cindy",
+   "name": "Cindy",
+   "email": "cindy@qelvionbiotech.com",
+   "whatsappDisplay": "+852 9267 5254",
+   "whatsappLink": "https://qelvioncindy.wasap.my/"
+  }
+ ]
 }
