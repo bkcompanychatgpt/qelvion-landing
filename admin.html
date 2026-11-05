@@ -81,7 +81,7 @@ input[type=file]{color:var(--mut);font-size:13px}
 <!-- dashboard -->
 <div id="dash" class="hide">
   <div class="tabs">
-    <button class="tab on" data-panel="tabContact">① Contact / WhatsApp</button>
+    <button class="tab on" data-panel="tabContact">① Contact / Email</button>
     <button class="tab" data-panel="tabText">② Homepage texts</button>
     <button class="tab" data-panel="tabImages">③ Product images</button>
     <button class="tab" data-panel="tabLinks">④ Buttons &amp; links</button>
@@ -92,14 +92,11 @@ input[type=file]{color:var(--mut);font-size:13px}
   <!-- contact -->
   <div class="panel on" id="tabContact">
     <div class="card">
-      <h2>Contact &amp; WhatsApp <span class="badge">assets/site-settings.js</span></h2>
-      <p class="sub">These power the email links across the site and the floating WhatsApp button (bottom-right).</p>
+      <h2>Contact / Email <span class="badge">assets/site-settings.js</span></h2>
+      <p class="sub">These power the email links across the site. WhatsApp is disabled (the main number was suspended on 2026-11-04) — the site now offers email only.</p>
       <div class="grid2">
         <div><label>Email shown on the site</label><input type="text" id="cEmail"></div>
-        <div><label>WhatsApp number (intl format, e.g. +8613800138000)</label><input type="text" id="cWa"></div>
       </div>
-      <label>Auto message when customers tap the WhatsApp button</label>
-      <textarea id="cWaMsg"></textarea>
       <div class="row" style="margin-top:16px"><button class="btn btn-p" id="btnSaveContact">Save contact info</button><span class="note">保存后 1-2 分钟网站自动更新</span></div>
     </div>
   </div>
@@ -276,8 +273,8 @@ function buildSettingsJs(email,wa,msg){
 $("btnSaveContact").onclick=async()=>{
   const btn=$("btnSaveContact"); btn.disabled=true;
   try{
-    const content=buildSettingsJs($("cEmail").value.trim(),$("cWa").value.trim(),$("cWaMsg").value.trim());
-    await writeRepoFile("assets/site-settings.js",content,"update contact / whatsapp");
+    const content=buildSettingsJs($("cEmail").value.trim(),"","");
+    await writeRepoFile("assets/site-settings.js",content,"update contact / email");
     toast("Contact saved — live site updates in 1-2 min ✔");
   }catch(e){ toast("Save failed: "+e.message,true); }
   btn.disabled=false;
@@ -414,10 +411,10 @@ const LINK_LABELS=[
  ["footer_privacy","Footer — Privacy policy"],
  ["footer_catalog","Footer — Research catalog"],
  ["catalog_cta_final","Catalog page — bottom “Request Full Catalog” button"],
- ["contact_btn_whatsapp","Contact page — WhatsApp button"],
+ ["contact_btn_whatsapp","（已停用）Contact 页的 WhatsApp 按钮"],
  ["contact_btn_email","Contact page — Email button"],
  ["product_quote_target","Product cards — “Request COA & Quote” target (email or URL)"],
- ["float_whatsapp","Floating WhatsApp button — default target (no sales rep assigned)"]
+ ["float_whatsapp","（已停用）悬浮 WhatsApp 按钮的默认目标"]
 ];
 let linksDefaults={}, linksCurrent={};
 async function loadLinks(){

@@ -44,13 +44,6 @@ window.__QTHEME_DEFAULT='dark';
         if(t.indexOf(OLD_MAIL)!==-1){a.textContent=t.replace(OLD_MAIL,e);}
       });
     }
-    var wb=document.getElementById("waFloat");
-    if(wb){
-      var n=String(Q.whatsapp||"").replace(/[^0-9]/g,"");
-      var m=(Q.whatsapp_msg||"").trim();
-      if(!wb.dataset.qvSet){ wb.href = n ? ("https://wa.me/"+n+(m?("?text="+encodeURIComponent(m)):"")) : "https://wa.me/"; }
-      if(n){ wb.classList.add("ready"); wb.setAttribute("aria-label","Chat with us on WhatsApp"); }
-    }
   }
   var s=document.createElement("script");
   s.src="assets/site-settings.js?v="+Date.now();
@@ -1196,18 +1189,7 @@ html[data-theme="light"] .wa-float .tip{background:#fff;color:var(--txt)}
       });
     }
   }  /* floating WhatsApp button: destination comes from site-settings.js */
-  (function(){
-    var wb=document.getElementById("waFloat");
-    if(!wb)return;
-    var cfg=window.QVSITE||{};
-    var n=String(cfg.whatsapp||"").replace(/[^0-9]/g,"");
-    var msg=(cfg.whatsapp_msg||"").trim();
-    if(n){
-      wb.href="https://wa.me/"+n+(msg?"?text="+encodeURIComponent(msg):"");
-      wb.classList.add("ready");
-      wb.setAttribute("aria-label","Chat with us on WhatsApp");
-    }
-  })();  /* theme toggle (dark / light) */
+/* theme toggle (dark / light) */
   var tt=document.getElementById("themeToggle");
   function applyTheme(mode){
     document.documentElement.setAttribute("data-theme",mode);

@@ -199,10 +199,18 @@
       '<svg width="38" height="38" viewBox="0 0 200 200" aria-hidden="true"><path d="M100 22 164.6 61 164.6 139 100 178 35.4 139 35.4 61Z" fill="none" stroke="#38D9F0" stroke-width="9"/><path d="M100 54C134 76 134 124 100 146" fill="none" stroke="#1FD6A4" stroke-width="7" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#38D9F0"/></svg>' +
       '<div><b>' + esc(data.brand) + '</b><small>CONTACT US</small></div></div>' +
       '<div class="qv-sec"><h4>QELVION Biotech — Main</h4>' +
-      '<div class="qv-row person"><div class="qv-who"><b>' + esc(m.label) + '</b>' +
-      '<span>' + esc(m.email) + '</span><span>WhatsApp ' + esc(m.whatsappDisplay) + '</span></div>' +
-      '<div class="qv-btns"><a class="qv-btn mail" href="mailto:' + esc(m.email) + '">✉ Email</a>' +
-      '<a class="qv-btn wa" href="' + esc(m.whatsappLink) + '" target="_blank" rel="noopener">WhatsApp</a></div></div></div>';
+      /* ★ 2026-11-04 老板：Main 只留 Email —— 号码/链接为空时**不印 WhatsApp 那行、
+         也不出 WhatsApp 按钮**（主号已被封，站上不再给客户看） */
+      (function () {
+        var mNum = String(m.whatsappDisplay || "").trim();
+        var mLink = String(m.whatsappLink || "").trim();
+        return '<div class="qv-row person"><div class="qv-who"><b>' + esc(m.label) + '</b>' +
+          '<span>' + esc(m.email) + '</span>' +
+          (mNum ? '<span>WhatsApp ' + esc(mNum) + '</span>' : '') + '</div>' +
+          '<div class="qv-btns"><a class="qv-btn mail" href="mailto:' + esc(m.email) + '">✉ Email</a>' +
+          (mLink ? '<a class="qv-btn wa" href="' + esc(mLink) + '" target="_blank" rel="noopener">WhatsApp</a>' : '') +
+          '</div></div></div>';
+      })();
     if (person) {
       html += '<div class="qv-sec"><h4>Your sales contact</h4>' + salesRow(person, true) + '</div>';
     } else {

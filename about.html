@@ -46,10 +46,7 @@
           if(t.indexOf("@")!==-1) a.textContent=t.replace(/\S+@\S+/, e);
         }
       }); }
-    var wb=document.getElementById("waFloat");
-    if(wb){ var n=String(Q.whatsapp||"").replace(/[^0-9]/g,""); var m=(Q.whatsapp_msg||"").trim();
-      if(!wb.dataset.qvSet){ wb.href = n ? ("https://wa.me/"+n+(m?("?text="+encodeURIComponent(m)):"")) : "https://wa.me/"; }
-      if(n){ wb.setAttribute("aria-label","Chat with us on WhatsApp"); } }
+
     var wn=document.querySelectorAll("[data-wa-number]");
     wn.forEach(function(el){ if(Q.whatsapp) el.textContent=Q.whatsapp; });
   }
